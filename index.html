@@ -82,10 +82,22 @@
     .portal-media{position:absolute;inset:0;background:center/cover no-repeat;opacity:0;transform:scale(1.06)}
     .portal-one .portal-media{display:none}
     .portal-destination{position:absolute;inset:0;background:#fff;color:var(--black);display:grid;place-items:center;text-align:center}
-    .portal-destination h2{font-size:clamp(3.5rem,8vw,8.5rem);font-weight:700;line-height:.82;letter-spacing:-.075em;text-transform:uppercase;margin:0;padding:var(--pad)}
+    .portal-destination h2{font-size:clamp(3.5rem,8vw,8.5rem);font-weight:700;line-height:.82;letter-spacing:-.075em;text-transform:uppercase;margin:0;padding:var(--pad);color:transparent;background:url("assets/xg-grid-night.webp") center/cover no-repeat;-webkit-background-clip:text;background-clip:text}
     .portal-destination h2 span{display:block}
     .portal-text-layer{position:absolute;inset:0;z-index:2;background:#000;color:#fff;display:grid;place-items:center;mix-blend-mode:multiply;will-change:transform,opacity;transform-origin:49% 50%}
     .portal-one .portal-word{color:#fff;background:none;font-size:clamp(8rem,30vw,30rem);line-height:1}
+    .portal-inner-title{position:absolute;z-index:2;inset:0;display:grid;place-items:center;color:#000;font-size:clamp(2.1rem,5.7vw,5.8rem);font-weight:700;line-height:.82;letter-spacing:-.075em;text-align:center;text-transform:uppercase;pointer-events:none}
+    .portal-inner-title span{display:block}
+    .portal-two{background:#020303}.portal-two .portal-sticky{background:radial-gradient(circle at 58% 48%,#10201c 0%,#050706 48%,#020202 80%)}
+    .portal-two .portal-word{position:absolute;z-index:4;left:var(--pad);top:50%;transform:translateY(-50%);text-align:left;font-size:clamp(5rem,13vw,13.5rem);line-height:.72;color:var(--paper);background:none;-webkit-text-stroke:0;mix-blend-mode:normal}
+    .globe-shell{position:absolute;inset:0;z-index:2;opacity:0;transform:scale(.86);overflow:hidden}
+    .globe-shell canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+    .globe-shell:after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 56% 48%,transparent 28%,rgba(2,3,3,.15) 52%,rgba(2,3,3,.88) 92%),linear-gradient(90deg,rgba(2,3,3,.82),transparent 43%)}
+    .globe-label{position:absolute;z-index:5;opacity:0;min-width:220px;padding-left:4.5rem;color:var(--paper);pointer-events:none}
+    .globe-label:before{content:"";position:absolute;left:0;top:50%;width:3.7rem;height:1px;background:var(--green);box-shadow:0 0 10px rgba(140,255,0,.65)}
+    .globe-label i{position:absolute;left:-4px;top:calc(50% - 4px);width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 7px rgba(140,255,0,.13),0 0 18px var(--green)}
+    .globe-label strong,.globe-label span{display:block}.globe-label strong{font-size:.82rem;letter-spacing:.04em}.globe-label span{color:#9ea69e;margin-top:.25rem}
+    .globe-meta{position:absolute;z-index:4;right:var(--pad);top:clamp(6rem,12vh,9rem);text-align:right;color:#919991}.globe-meta b{display:block;color:var(--green);font-weight:400;margin-top:.35rem}
     .portal-one .portal-caption{z-index:3}
     .portal-two .portal-media{background-image:url("assets/xg-store-day.webp")}
     .portal-media:after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.28)}
@@ -183,10 +195,12 @@
     .directors-head{display:grid;grid-template-columns:1fr 2fr;gap:3rem;align-items:end}
     .directors-head h2{font-size:clamp(4rem,9vw,9rem)}
     .director-list{display:grid;grid-template-columns:repeat(4,1fr);margin-top:5rem;border-top:1px solid #303630;border-left:1px solid #303630}
-    .director-mini{min-height:330px;padding:1.5rem;border-right:1px solid #303630;border-bottom:1px solid #303630;display:flex;flex-direction:column;justify-content:space-between;transition:background .35s}
+    .director-mini{min-height:430px;padding:1rem;border-right:1px solid #303630;border-bottom:1px solid #303630;display:flex;flex-direction:column;justify-content:space-between;transition:background .35s}
     .director-mini:hover{background:#111711}
+    .director-mini img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center 24%;filter:saturate(.72) contrast(1.06);margin-bottom:1.2rem;transition:filter .35s,transform .6s var(--ease)}
+    .director-mini:hover img{filter:saturate(.95) contrast(1.03)}
     .director-mini span{color:var(--copper)}
-    .director-mini h3{font-size:clamp(1.45rem,2.1vw,2.1rem);font-weight:400;letter-spacing:-.045em;margin:auto 0 1rem}
+    .director-mini h3{font-size:clamp(1.45rem,2.1vw,2.1rem);font-weight:400;letter-spacing:-.045em;margin:1.4rem 0 .7rem}
     .director-mini p{margin:0;color:#a9ada7;font-size:.9rem}
     .directors-link{margin-top:2rem;display:flex;justify-content:flex-end}
     .directors-link a{display:inline-flex;align-items:center;gap:1rem;border-bottom:1px solid #8d8d85;padding-bottom:.5rem}
@@ -230,7 +244,7 @@
       .directors-head{grid-template-columns:minmax(0,1fr)}.directors-head>*{min-width:0}.directors-head h2{font-size:clamp(3rem,13vw,5.3rem)}.director-list{grid-template-columns:1fr 1fr}.director-mini{min-height:260px}
       .contact-cta-row{align-items:flex-start;flex-direction:column}.footer{min-height:80svh}.footer-top{flex-direction:column}.footer-title{font-size:28vw;margin-bottom:-.5rem}.footer-bottom{font-size:.53rem}.footer-bottom span:last-child{display:none}
     }
-    @media(max-width:560px){.director-list{grid-template-columns:1fr}.director-mini{min-height:220px}.menu-foot{font-size:.55rem}}
+    @media(max-width:560px){.director-list{grid-template-columns:1fr}.director-mini{min-height:420px}.menu-foot{font-size:.55rem}}
     @media(prefers-reduced-motion:reduce){
       html{scroll-behavior:auto}.reveal{opacity:1;transform:none}.hero-media,.hero-title i{animation:none;transform:none}
       .solutions-wrap,.bess-story,.day-story,.portal{height:auto}.solutions-sticky,.bess-sticky,.day-sticky,.portal-sticky{position:relative}
@@ -282,7 +296,7 @@
     <section class="portal portal-one" data-portal>
       <div class="portal-sticky">
         <div class="portal-destination"><h2>XTRA GRID<span>TECHNOLOGIES</span></h2></div>
-        <div class="portal-text-layer"><h2 class="portal-word"><span>POWER</span></h2></div>
+        <div class="portal-text-layer"><h2 class="portal-word"><span>POWER</span></h2><div class="portal-inner-title"><span>XTRA GRID<br>TECHNOLOGIES</span></div></div>
         <div class="portal-caption"><span class="portal-index mono">01 / Portal</span><p>Move through power into the systems that store, direct and deploy it.</p></div>
       </div>
     </section>
@@ -383,9 +397,13 @@
 
     <section class="portal portal-two" data-portal>
       <div class="portal-sticky">
-        <div class="portal-media"></div>
+        <div class="globe-shell" aria-label="Three-dimensional Earth focused on Thiruvananthapuram, Kerala, India">
+          <canvas id="xgGlobe"></canvas>
+          <div class="globe-label mono"><i></i><strong>XTRA GRID / TRIVANDRUM</strong><span>08.5241° N / 76.9366° E<br>Kerala / India</span></div>
+          <div class="globe-meta mono"><span>Global systems<br>Local intelligence</span><b>India / Kerala</b></div>
+        </div>
         <h2 class="portal-word"><span>POWER</span><span>MOVES</span></h2>
-        <div class="portal-caption"><span class="portal-index mono">02 / Portal</span><p>From generation to storage. From infrastructure to intelligent control.</p></div>
+        <div class="portal-caption"><span class="portal-index mono">05 / Location</span><p>Engineered in Kerala. Connected to a changing energy world.</p></div>
       </div>
     </section>
 
@@ -401,10 +419,10 @@
     <section class="directors-preview">
       <div class="directors-head"><p class="eyebrow">Directors / No hierarchy</p><h2 class="display reveal">Four perspectives. One direction.</h2></div>
       <div class="director-list">
-        <article class="director-mini reveal"><span class="mono">Director / 01</span><h3>Samridh Suresh</h3><p>Emerging technology, applied AI and digital architecture.</p></article>
-        <article class="director-mini reveal"><span class="mono">Director / 02</span><h3>U V Suresh</h3><p>Grid energy strategy, utility systems and engineering.</p></article>
-        <article class="director-mini reveal"><span class="mono">Director / 03</span><h3>Shebu Mathews</h3><p>Renewable infrastructure, industrial delivery and governance.</p></article>
-        <article class="director-mini reveal"><span class="mono">Director / 04</span><h3>Diljith Bose</h3><p>Global enterprise strategy, partnerships and technology ventures.</p></article>
+        <article class="director-mini reveal"><img src="https://i.postimg.cc/q6ncBcqK/Whats-App-Image-2026-08-22-at-1-06-12-PM.jpg" alt="Samridh Suresh, Director of XTRA GRID" loading="lazy" decoding="async"><span class="mono">Director / 01</span><h3>Samridh Suresh</h3><p>Emerging technology, applied AI and digital architecture.</p></article>
+        <article class="director-mini reveal"><img src="https://i.postimg.cc/9wTPXP0T/Whats-App-Image-2026-08-22-at-2-44-11-PM.jpg" alt="U V Suresh, Director of XTRA GRID" loading="lazy" decoding="async"><span class="mono">Director / 02</span><h3>U V Suresh</h3><p>Grid energy strategy, utility systems and engineering.</p></article>
+        <article class="director-mini reveal"><img src="https://i.postimg.cc/dZdRQR3G/Whats-App-Image-2026-08-22-at-4-40-44-PM.jpg" alt="Shebu Mathews, Director of XTRA GRID" loading="lazy" decoding="async"><span class="mono">Director / 03</span><h3>Shebu Mathews</h3><p>Renewable infrastructure, industrial delivery and governance.</p></article>
+        <article class="director-mini reveal"><img src="https://i.postimg.cc/D4sQfQ0q/Whats-App-Image-2026-08-23-at-2-46-12-AM.jpg" alt="Diljith Bose, Director of XTRA GRID" loading="lazy" decoding="async"><span class="mono">Director / 04</span><h3>Diljith Bose</h3><p>Global enterprise strategy, partnerships and technology ventures.</p></article>
       </div>
       <div class="directors-link mono"><a href="company/"><span>Meet the directors</span><b>↗</b></a></div>
     </section>
@@ -425,6 +443,7 @@
     <div class="footer-bottom mono"><span>© 2026 XTRA GRID</span><b>Where Tech Sparks Power</b><span>Kerala / India</span></div>
   </footer>
 
+  <script type="module" src="assets/globe.js"></script>
   <script src="https://unpkg.com/lenis@1.3.26/dist/lenis.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
@@ -491,12 +510,13 @@
               .to(layer,{autoAlpha:0,duration:.08},.9);
           }else{
             const word=portal.querySelector('.portal-word');
-            const media=portal.querySelector('.portal-media');
-            gsap.timeline({scrollTrigger:{trigger:portal,start:'top top',end:'+=300%',scrub:true,pin:true,anticipatePin:1,invalidateOnRefresh:true}})
-              .to(caption,{autoAlpha:0,duration:.12},0)
-              .to(word,{scale:22,ease:'power2.in',duration:1},0)
-              .to(word,{autoAlpha:0,duration:.08},.82)
-              .to(media,{autoAlpha:1,scale:1,duration:.2},.75);
+            const globe=portal.querySelector('.globe-shell');
+            const label=portal.querySelector('.globe-label');
+            gsap.timeline({scrollTrigger:{trigger:portal,start:'top top',end:'+=320%',scrub:1,pin:true,anticipatePin:1,invalidateOnRefresh:true}})
+              .to(caption,{autoAlpha:0,duration:.15},0)
+              .to(word,{scale:1.18,yPercent:-22,autoAlpha:0,ease:'power2.inOut',duration:.52},0)
+              .fromTo(globe,{autoAlpha:0,scale:.86},{autoAlpha:1,scale:1,ease:'power2.out',duration:.74},.22)
+              .fromTo(label,{autoAlpha:0,x:28},{autoAlpha:1,x:0,duration:.28},.68);
           }
         };
         createPortal(portals[0],0);
