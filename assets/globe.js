@@ -29,7 +29,7 @@ if(canvas&&shell&&label){
 
   const earth=new THREE.Mesh(
     new THREE.SphereGeometry(1,96,96),
-    new THREE.MeshStandardMaterial({map,color:0x8b9891,roughness:.88,metalness:.04})
+    new THREE.MeshStandardMaterial({map:texture,color:0x8b9891,roughness:.88,metalness:.04})
   );
   earthGroup.add(earth);
 
