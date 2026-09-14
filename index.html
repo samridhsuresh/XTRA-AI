@@ -480,7 +480,8 @@
         .to(intro,{clipPath:'inset(0 0 100% 0)',duration:.8},1.1);
 
       if(!reduced){
-        document.querySelectorAll('[data-portal]').forEach((portal,index)=>{
+        const portals=Array.from(document.querySelectorAll('[data-portal]'));
+        const createPortal=(portal,index)=>{
           const caption=portal.querySelector('.portal-caption');
           if(index===0){
             const layer=portal.querySelector('.portal-text-layer');
@@ -497,7 +498,8 @@
               .to(word,{autoAlpha:0,duration:.08},.82)
               .to(media,{autoAlpha:1,scale:1,duration:.2},.75);
           }
-        });
+        };
+        createPortal(portals[0],0);
 
         const story=document.querySelector('.bess-story');
         const storyStage=story.querySelector('.bess-sticky');
@@ -553,6 +555,9 @@
               }
             }
           });
+          gsap.utils.toArray('.solution-bg',wrap).forEach(bg=>{
+            gsap.fromTo(bg,{scale:1.08},{scale:1,ease:'none',scrollTrigger:{trigger:bg.parentElement,start:'left right',end:'right left',containerAnimation:tween,scrub:true}});
+          });
           return()=>tween.kill();
         });
 
@@ -566,9 +571,8 @@
           marker.setAttribute('cy',String(Math.max(65,y)));
         }}});
 
-        gsap.utils.toArray('.solution-bg').forEach(bg=>{
-          gsap.fromTo(bg,{scale:1.08},{scale:1,ease:'none',scrollTrigger:{trigger:bg.parentElement,start:'left right',end:'right left',containerAnimation:gsap.getTweensOf('.h-panel')[0]||undefined,scrub:true}});
-        });
+        createPortal(portals[1],1);
+        requestAnimationFrame(()=>ScrollTrigger.refresh());
       }
 
       addEventListener('load',()=>ScrollTrigger.refresh());
