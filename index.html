@@ -219,7 +219,10 @@
     .footer-bottom b{color:var(--green);font-weight:400}
 
     @media(max-width:900px){
-      :root{--pad:1.15rem}.site-nav{grid-template-columns:1fr auto}.nav-links,.contact-link{display:none}.menu-btn{display:block}
+      :root{--pad:1.15rem}
+      .globe-label{left:var(--pad)!important;right:var(--pad);top:auto!important;bottom:5rem;min-width:0;width:auto;padding-left:2.4rem}
+      .globe-label:before{width:1.8rem}.globe-meta{top:5.5rem;font-size:.55rem}
+      .portal-two .portal-word{font-size:clamp(4.7rem,24vw,8rem);top:48%}.site-nav{grid-template-columns:1fr auto}.nav-links,.contact-link{display:none}.menu-btn{display:block}
       .hero-media{background-position:68% center}.hero-media:after{background:linear-gradient(180deg,rgba(5,5,5,.8),rgba(5,5,5,.25) 45%,rgba(5,5,5,.9))}
       .hero-grid{grid-template-columns:repeat(4,minmax(0,1fr));padding-top:6rem}
       .hero-top{grid-column:1/5}.hero-title{grid-column:1/5;font-size:clamp(4rem,18.5vw,7rem);align-self:center}
