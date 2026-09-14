@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.26/dist/lenis.css">
   <link rel="preload" href="assets/xg-bess-hero.webp" as="image" type="image/webp">
   <link rel="icon" type="image/png" href="assets/xtragrid-logo.png">
   <style>
@@ -46,6 +47,10 @@
     .menu nav a{font-size:clamp(3.2rem,10vw,8rem);font-weight:400;letter-spacing:-.075em;line-height:.86;text-transform:uppercase;transition:color .25s,transform .35s var(--ease)}
     .menu nav a:hover{color:var(--green);transform:translateX(.7rem)}
     .menu-foot{display:flex;justify-content:space-between;color:#87877f}
+    .opening-experience{position:fixed;inset:0;z-index:1000;background:var(--black);display:grid;place-items:center;overflow:hidden;animation:introFallback .8s 4s var(--ease) forwards}
+    .opening-mark{display:grid;place-items:center;text-align:center}.opening-mark strong{font-size:clamp(3.5rem,10vw,10rem);font-weight:600;line-height:.8;letter-spacing:-.08em}.opening-mark span{margin-top:1.5rem;color:var(--green)}
+    .opening-rule{position:absolute;left:var(--pad);right:var(--pad);bottom:var(--pad);height:1px;background:#282828}.opening-rule i{display:block;width:0;height:1px;background:var(--green)}
+    @keyframes introFallback{to{opacity:0;visibility:hidden;pointer-events:none}}
 
     .hero{height:100svh;min-height:680px;position:relative;overflow:hidden;background:#0a0b09}
     .hero-media{position:absolute;inset:0;background:url("assets/xg-bess-hero.webp") 62% center/cover no-repeat;transform:scale(1.035);animation:heroZoom 9s var(--ease) both}
@@ -72,10 +77,16 @@
     .opening-copy p{margin:0;max-width:38ch;color:#31312e}
     .opening-copy strong{font-weight:500}
 
-    .portal{height:230svh;position:relative;background:var(--black)}
-    .portal-sticky{position:sticky;top:0;height:100svh;overflow:hidden;display:grid;place-items:center}
+    .portal{height:100svh;position:relative;background:var(--black)}
+    .portal-sticky{position:relative;height:100%;overflow:hidden;display:grid;place-items:center}
     .portal-media{position:absolute;inset:0;background:center/cover no-repeat;opacity:0;transform:scale(1.06)}
-    .portal-one .portal-media{background-image:url("assets/xg-grid-night.webp")}
+    .portal-one .portal-media{display:none}
+    .portal-destination{position:absolute;inset:0;background:#fff;color:var(--black);display:grid;place-items:center;text-align:center}
+    .portal-destination h2{font-size:clamp(3.5rem,8vw,8.5rem);font-weight:700;line-height:.82;letter-spacing:-.075em;text-transform:uppercase;margin:0;padding:var(--pad)}
+    .portal-destination h2 span{display:block}
+    .portal-text-layer{position:absolute;inset:0;z-index:2;background:#000;color:#fff;display:grid;place-items:center;mix-blend-mode:multiply;will-change:transform,opacity;transform-origin:49% 50%}
+    .portal-one .portal-word{color:#fff;background:none;font-size:clamp(8rem,30vw,30rem);line-height:1}
+    .portal-one .portal-caption{z-index:3}
     .portal-two .portal-media{background-image:url("assets/xg-store-day.webp")}
     .portal-media:after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.28)}
     .portal-word{position:relative;z-index:2;font-size:clamp(6.8rem,24vw,24rem);font-weight:700;letter-spacing:-.115em;line-height:.63;text-align:center;text-transform:uppercase;color:transparent;background:center/cover no-repeat;-webkit-background-clip:text;background-clip:text;will-change:transform,opacity}
@@ -86,8 +97,8 @@
     .portal-caption p{margin:0;max-width:34ch;color:#b6b6ae}
     .portal-index{color:var(--green)}
 
-    .solutions-wrap{height:calc((var(--panels) + 1) * 100svh);position:relative;background:var(--black)}
-    .solutions-sticky{position:sticky;top:0;height:100svh;overflow:hidden}
+    .solutions-wrap{height:100svh;position:relative;background:var(--black)}
+    .solutions-sticky{position:relative;height:100%;overflow:hidden}
     .solutions-track{height:100%;display:flex;width:calc(var(--panels) * 100vw);will-change:transform}
     .solution{width:100vw;height:100svh;flex:0 0 100vw;position:relative;overflow:hidden;padding:clamp(6rem,11vh,8rem) var(--pad) var(--pad);display:grid;grid-template-columns:repeat(12,minmax(0,1fr));grid-template-rows:auto 1fr auto;gap:1rem}
     .solution-bg{position:absolute;inset:0;background:center/cover no-repeat;transform:scale(1.04)}
@@ -108,8 +119,8 @@
     .scene-progress i{position:absolute;inset:0 auto 0 0;background:var(--green);width:0}
     .scene-count{color:#aaa}
 
-    .bess-story{height:720svh;position:relative;background:var(--black)}
-    .bess-sticky{position:sticky;top:0;height:100svh;overflow:hidden}
+    .bess-story{height:100svh;position:relative;background:var(--black)}
+    .bess-sticky{position:relative;height:100%;overflow:hidden}
     .bess-bg{position:absolute;inset:0;background:url("assets/xg-bess-hero.webp") 68% center/cover no-repeat;transform:scale(1.035)}
     .bess-bg:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,5,5,.95) 0%,rgba(5,5,5,.82) 42%,rgba(5,5,5,.3) 75%),linear-gradient(0deg,rgba(5,5,5,.7),transparent 45%)}
     .bess-grid{position:relative;z-index:2;height:100%;padding:clamp(6rem,11vh,8rem) var(--pad) var(--pad);display:grid;grid-template-columns:repeat(12,minmax(0,1fr));grid-template-rows:auto 1fr auto;gap:1rem}
@@ -135,8 +146,8 @@
     .story-progress-line i{display:block;width:calc(var(--story-p,0) * 100%);height:1px;background:var(--green)}
     .story-phase{min-width:5rem;text-align:right;color:#9b9b94}
 
-    .day-story{height:420svh;position:relative;background:#10110d}
-    .day-sticky{position:sticky;top:0;height:100svh;overflow:hidden}
+    .day-story{height:100svh;position:relative;background:#10110d}
+    .day-sticky{position:relative;height:100%;overflow:hidden}
     .day-image{position:absolute;inset:0;background:url("assets/xg-store-day.webp") center/cover no-repeat;transform:scale(1.035)}
     .day-shade{position:absolute;inset:0;background:#03050a;opacity:.1;mix-blend-mode:multiply}
     .day-sticky:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,5,5,.3),rgba(5,5,5,.74))}
@@ -180,6 +191,10 @@
     .directors-link{margin-top:2rem;display:flex;justify-content:flex-end}
     .directors-link a{display:inline-flex;align-items:center;gap:1rem;border-bottom:1px solid #8d8d85;padding-bottom:.5rem}
     .directors-link b{color:var(--green);font-weight:400}
+    .contact-cta{min-height:82svh;background:var(--green);color:var(--black);padding:clamp(6rem,10vw,10rem) var(--pad);display:grid;align-content:center}
+    .contact-cta h2{font-size:clamp(4rem,11vw,11.5rem);max-width:9ch}
+    .contact-cta-row{display:flex;justify-content:space-between;align-items:end;gap:2rem;margin-top:4rem;border-top:1px solid rgba(5,5,5,.45);padding-top:1.2rem}
+    .contact-cta-row p{margin:0;max-width:36ch}.contact-cta-row a{display:inline-flex;align-items:center;gap:1rem;border-bottom:1px solid;padding-bottom:.45rem}.contact-cta-row b{width:44px;height:44px;border:1px solid;border-radius:50%;display:grid;place-items:center;font-weight:400}
 
     .footer{min-height:92svh;background:var(--black);padding:var(--pad);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden}
     .footer-top{display:flex;justify-content:space-between;gap:3rem}
@@ -203,7 +218,7 @@
       .solutions-ui{display:none}.solution{width:100%;height:82svh;min-height:620px;grid-template-columns:repeat(4,minmax(0,1fr));padding-top:5rem;border-bottom:1px solid rgba(255,255,255,.15)}
       .solution-index{grid-column:1/2}.solution-kicker{grid-column:3/5}.solution h2{grid-column:1/5;font-size:clamp(3.8rem,17vw,6.2rem)}
       .solution-bottom{grid-column:1/5;grid-template-columns:repeat(4,minmax(0,1fr))}.solution-bottom p{grid-column:1/4}.scene-link{grid-column:4/5}.scene-link span{display:none}
-      .bess-story{height:620svh}.bess-grid{grid-template-columns:repeat(4,minmax(0,1fr));padding-top:5.5rem}
+      .bess-story{height:100svh}.bess-grid{grid-template-columns:repeat(4,minmax(0,1fr));padding-top:5.5rem}
       .bess-grid>h2{grid-column:1/5;font-size:clamp(3.6rem,16vw,6rem);align-self:start;margin-top:2rem}.bess-copy{grid-column:1/5;grid-row:2;align-self:end;margin-bottom:44vh}
       .energy-diagram{grid-column:1/5;grid-row:2/4;height:40vh;min-height:300px}.story-progress{grid-column:1/5}
       .diagram-label.store{width:42%;height:46%}.diagram-label{font-size:.54rem}
@@ -213,7 +228,7 @@
       .company-story{grid-template-columns:repeat(4,minmax(0,1fr));min-height:auto}.company-story .eyebrow{grid-column:1/5}.company-story h2{grid-column:1/5;margin-top:3rem;font-size:clamp(3.6rem,15.5vw,6.5rem)}
       .company-story h2 .shift{padding-left:0}.company-copy{grid-column:1/5;grid-template-columns:1fr}
       .directors-head{grid-template-columns:minmax(0,1fr)}.directors-head>*{min-width:0}.directors-head h2{font-size:clamp(3rem,13vw,5.3rem)}.director-list{grid-template-columns:1fr 1fr}.director-mini{min-height:260px}
-      .footer{min-height:80svh}.footer-top{flex-direction:column}.footer-title{font-size:28vw;margin-bottom:-.5rem}.footer-bottom{font-size:.53rem}.footer-bottom span:last-child{display:none}
+      .contact-cta-row{align-items:flex-start;flex-direction:column}.footer{min-height:80svh}.footer-top{flex-direction:column}.footer-title{font-size:28vw;margin-bottom:-.5rem}.footer-bottom{font-size:.53rem}.footer-bottom span:last-child{display:none}
     }
     @media(max-width:560px){.director-list{grid-template-columns:1fr}.director-mini{min-height:220px}.menu-foot{font-size:.55rem}}
     @media(prefers-reduced-motion:reduce){
@@ -224,6 +239,10 @@
   </style>
 </head>
 <body>
+  <div class="opening-experience" aria-hidden="true">
+    <div class="opening-mark"><strong class="display">XTRA GRID</strong><span class="mono">Where tech sparks power</span></div>
+    <div class="opening-rule"><i></i></div>
+  </div>
   <header class="site-nav">
     <a class="brand" href="#top" aria-label="XTRA GRID home"><img src="assets/xtragrid-logo.png" alt=""><span>XTRA GRID</span></a>
     <nav class="nav-links" aria-label="Primary">
@@ -262,47 +281,9 @@
 
     <section class="portal portal-one" data-portal>
       <div class="portal-sticky">
-        <div class="portal-media"></div>
-        <h2 class="portal-word"><span>XTRA</span><span>GRID</span></h2>
-        <div class="portal-caption"><span class="portal-index mono">01 / Portal</span><p>Energy becomes infrastructure. Infrastructure becomes intelligence.</p></div>
-      </div>
-    </section>
-
-    <section class="solutions-wrap" id="solutions">
-      <div class="solutions-sticky">
-        <div class="solutions-ui mono"><span>Solutions / Scroll to navigate</span><div><span class="scene-count">01 / 06</span>&nbsp;&nbsp;<span class="scene-progress"><i></i></span></div></div>
-        <div class="solutions-track">
-          <article class="solution">
-            <div class="solution-bg"></div><span class="solution-index mono">01 / 06</span><span class="solution-kicker mono">Storage / Control / Resilience</span>
-            <h2 class="display">Battery energy storage.</h2>
-            <div class="solution-bottom"><p>Residential, commercial and industrial BESS for renewable integration, backup applications, demand management and grid support.</p><a class="scene-link mono" href="energy-storage/"><span>Explore</span><b>↗</b></a></div>
-          </article>
-          <article class="solution">
-            <div class="solution-bg"></div><span class="solution-index mono">02 / 06</span><span class="solution-kicker mono">Generate / Integrate / Maintain</span>
-            <h2 class="display">Solar energy.</h2>
-            <div class="solution-bottom"><p>Rooftop, commercial and industrial solar—from consulting and project development to EPC and operation & maintenance.</p><a class="scene-link mono" href="solar-energy/"><span>Explore</span><b>↗</b></a></div>
-          </article>
-          <article class="solution">
-            <div class="solution-bg"></div><span class="solution-index mono">03 / 06</span><span class="solution-kicker mono">Monitor / Balance / Direct</span>
-            <h2 class="display">Smart grid systems.</h2>
-            <div class="solution-bottom"><p>Energy monitoring, microgrids, distributed-energy systems, power quality and intelligent energy management.</p><a class="scene-link mono" href="smart-grid/"><span>Explore</span><b>↗</b></a></div>
-          </article>
-          <article class="solution">
-            <div class="solution-bg"></div><span class="solution-index mono">04 / 06</span><span class="solution-kicker mono">Charge / Fleet / Infrastructure</span>
-            <h2 class="display">EV & mobility.</h2>
-            <div class="solution-bottom"><p>Charging infrastructure, fleet-energy systems and electrification solutions where technically and legally applicable.</p><a class="scene-link mono" href="electric-mobility/"><span>Explore</span><b>↗</b></a></div>
-          </article>
-          <article class="solution">
-            <div class="solution-bg"></div><span class="solution-index mono">05 / 06</span><span class="solution-kicker mono">Software / Cloud / Security</span>
-            <h2 class="display">Digital systems.</h2>
-            <div class="solution-bottom"><p>Software and web development, cloud and IT infrastructure, networking, cybersecurity and business-process solutions.</p><a class="scene-link mono" href="it-digital/"><span>Explore</span><b>↗</b></a></div>
-          </article>
-          <article class="solution">
-            <div class="solution-bg"></div><span class="solution-index mono">06 / 06</span><span class="solution-kicker mono">AI / Automation / Analytics</span>
-            <h2 class="display">Emerging tech.</h2>
-            <div class="solution-bottom"><p>Applied AI, automation, analytics, IoT and intelligent systems connected to real business and infrastructure needs.</p><a class="scene-link mono" href="emerging-technologies/"><span>Explore</span><b>↗</b></a></div>
-          </article>
-        </div>
+        <div class="portal-destination"><h2>XTRA GRID<span>TECHNOLOGIES</span></h2></div>
+        <div class="portal-text-layer"><h2 class="portal-word"><span>POWER</span></h2></div>
+        <div class="portal-caption"><span class="portal-index mono">01 / Portal</span><p>Move through power into the systems that store, direct and deploy it.</p></div>
       </div>
     </section>
 
@@ -343,6 +324,44 @@
           <h2 class="display"><span>Store</span><span>the day.</span></h2>
           <strong class="day-phase">Morning</strong>
           <div class="day-flow"><div class="sun-track"><i></i></div><div class="day-flow-bottom mono"><span>Generate</span><span>Store</span><span>Deploy</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="solutions-wrap" id="solutions">
+      <div class="solutions-sticky">
+        <div class="solutions-ui mono"><span>Solutions / Scroll to navigate</span><div><span class="scene-count">01 / 06</span>&nbsp;&nbsp;<span class="scene-progress"><i></i></span></div></div>
+        <div class="solutions-track">
+          <article class="solution h-panel">
+            <div class="solution-bg"></div><span class="solution-index mono">01 / 06</span><span class="solution-kicker mono">Storage / Control / Resilience</span>
+            <h2 class="display">Battery energy storage.</h2>
+            <div class="solution-bottom"><p>Residential, commercial and industrial BESS for renewable integration, backup applications, demand management and grid support.</p><a class="scene-link mono" href="energy-storage/"><span>Explore</span><b>↗</b></a></div>
+          </article>
+          <article class="solution h-panel">
+            <div class="solution-bg"></div><span class="solution-index mono">02 / 06</span><span class="solution-kicker mono">Generate / Integrate / Maintain</span>
+            <h2 class="display">Solar energy.</h2>
+            <div class="solution-bottom"><p>Rooftop, commercial and industrial solar—from consulting and project development to EPC and operation & maintenance.</p><a class="scene-link mono" href="solar-energy/"><span>Explore</span><b>↗</b></a></div>
+          </article>
+          <article class="solution h-panel">
+            <div class="solution-bg"></div><span class="solution-index mono">03 / 06</span><span class="solution-kicker mono">Monitor / Balance / Direct</span>
+            <h2 class="display">Smart grid systems.</h2>
+            <div class="solution-bottom"><p>Energy monitoring, microgrids, distributed-energy systems, power quality and intelligent energy management.</p><a class="scene-link mono" href="smart-grid/"><span>Explore</span><b>↗</b></a></div>
+          </article>
+          <article class="solution h-panel">
+            <div class="solution-bg"></div><span class="solution-index mono">04 / 06</span><span class="solution-kicker mono">Charge / Fleet / Infrastructure</span>
+            <h2 class="display">EV & mobility.</h2>
+            <div class="solution-bottom"><p>Charging infrastructure, fleet-energy systems and electrification solutions where technically and legally applicable.</p><a class="scene-link mono" href="electric-mobility/"><span>Explore</span><b>↗</b></a></div>
+          </article>
+          <article class="solution h-panel">
+            <div class="solution-bg"></div><span class="solution-index mono">05 / 06</span><span class="solution-kicker mono">Software / Cloud / Security</span>
+            <h2 class="display">Digital systems.</h2>
+            <div class="solution-bottom"><p>Software and web development, cloud and IT infrastructure, networking, cybersecurity and business-process solutions.</p><a class="scene-link mono" href="it-digital/"><span>Explore</span><b>↗</b></a></div>
+          </article>
+          <article class="solution h-panel">
+            <div class="solution-bg"></div><span class="solution-index mono">06 / 06</span><span class="solution-kicker mono">AI / Automation / Analytics</span>
+            <h2 class="display">Emerging tech.</h2>
+            <div class="solution-bottom"><p>Applied AI, automation, analytics, IoT and intelligent systems connected to real business and infrastructure needs.</p><a class="scene-link mono" href="emerging-technologies/"><span>Explore</span><b>↗</b></a></div>
+          </article>
         </div>
       </div>
     </section>
@@ -389,6 +408,12 @@
       </div>
       <div class="directors-link mono"><a href="company/"><span>Meet the directors</span><b>↗</b></a></div>
     </section>
+
+    <section class="contact-cta">
+      <p class="eyebrow">Business enquiries / India</p>
+      <h2 class="display reveal">Start with the problem.</h2>
+      <div class="contact-cta-row"><p>Tell us the goal, the constraint and where you are starting from. We will begin with the system, not the sales pitch.</p><a class="mono" href="contact/"><span>Talk to XTRA GRID</span><b>↗</b></a></div>
+    </section>
   </main>
 
   <footer class="footer">
@@ -400,92 +425,158 @@
     <div class="footer-bottom mono"><span>© 2026 XTRA GRID</span><b>Where Tech Sparks Power</b><span>Kerala / India</span></div>
   </footer>
 
+  <script src="https://unpkg.com/lenis@1.3.26/dist/lenis.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
   <script>
     (function(){
-      const reduced=matchMedia('(prefers-reduced-motion:reduce)').matches;
-      const clamp=(n,min=0,max=1)=>Math.min(max,Math.max(min,n));
+      const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
       const nav=document.querySelector('.site-nav');
       const menuButton=document.querySelector('.menu-btn');
       const menu=document.querySelector('.menu');
+      const intro=document.querySelector('.opening-experience');
+
       function setMenu(open){
         document.body.classList.toggle('menu-open',open);
         nav.classList.toggle('open',open);
         menuButton.setAttribute('aria-expanded',String(open));
         menu.setAttribute('aria-hidden',String(!open));
         menuButton.textContent=open?'Close':'Menu';
+        if(window.xgLenis){open?window.xgLenis.stop():window.xgLenis.start()}
       }
       menuButton.addEventListener('click',()=>setMenu(!document.body.classList.contains('menu-open')));
       menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>setMenu(false)));
+      addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40),{passive:true});
+
       const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.12});
       document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
-      if(reduced)return;
 
-      const solutionWrap=document.querySelector('.solutions-wrap');
-      const solutionTrack=document.querySelector('.solutions-track');
-      const sceneCount=document.querySelector('.scene-count');
-      const sceneBar=document.querySelector('.scene-progress i');
-      const story=document.querySelector('.bess-story');
-      const storySteps=[...document.querySelectorAll('.bess-step')];
-      const storyStage=document.querySelector('.bess-sticky');
-      const storyPhase=document.querySelector('.story-phase');
-      const storyPhases=['Generate','Store','Charge','Time','Demand','Deploy','Power'];
-      const dayStory=document.querySelector('.day-story');
-      const dayShade=document.querySelector('.day-shade');
-      const dayPhase=document.querySelector('.day-phase');
-      const sun=document.querySelector('.sun-track i');
-      const curve=document.querySelector('.curve');
-      const curveLine=document.querySelector('.curve-line');
-      const curveMarker=document.querySelector('.curve-marker');
-      const portals=[...document.querySelectorAll('[data-portal]')];
+      if(!window.gsap||!window.ScrollTrigger||!window.Lenis){
+        intro.style.opacity='0';intro.style.visibility='hidden';intro.style.pointerEvents='none';
+        return;
+      }
 
-      function update(){
-        nav.classList.toggle('scrolled',scrollY>40);
-        if(innerWidth>900){
-          const r=solutionWrap.getBoundingClientRect();
-          const p=clamp(-r.top/(r.height-innerHeight));
-          solutionTrack.style.transform='translate3d('+(-p*5*innerWidth)+'px,0,0)';
-          sceneBar.style.width=(p*100)+'%';
-          sceneCount.textContent=String(Math.min(6,Math.floor(p*5+.08)+1)).padStart(2,'0')+' / 06';
-        }
-        const sr=story.getBoundingClientRect();
-        const sp=clamp(-sr.top/(sr.height-innerHeight));
-        const si=Math.min(storySteps.length-1,Math.floor(sp*storySteps.length));
-        storyStage.style.setProperty('--story-p',String(Math.min(1,sp*1.55)));
-        storyStage.style.setProperty('--path',String(Math.round(sp*1200)));
-        storySteps.forEach((step,i)=>step.classList.toggle('active',i===si));
-        storyPhase.textContent=storyPhases[si];
-        const st=storyStage.querySelector('.story-progress>span');
-        if(st)st.textContent=String(si+1).padStart(2,'0');
+      gsap.registerPlugin(ScrollTrigger);
+      const lenis=new Lenis({
+        duration:1.2,
+        easing:t=>Math.min(1,1.001-Math.pow(2,-10*t)),
+        smoothWheel:true,
+        anchors:true,
+        respectReducedMotion:true
+      });
+      window.xgLenis=lenis;
+      lenis.on('scroll',ScrollTrigger.update);
+      const lenisTick=time=>lenis.raf(time*1000);
+      gsap.ticker.add(lenisTick);
+      gsap.ticker.lagSmoothing(0);
 
-        const dr=dayStory.getBoundingClientRect();
-        const dp=clamp(-dr.top/(dr.height-innerHeight));
-        dayShade.style.opacity=String(.08+dp*.78);
-        sun.style.left='calc('+(dp*100)+'% - '+(dp*12)+'px)';
-        dayPhase.textContent=dp<.25?'Morning':dp<.52?'Day':dp<.77?'Sunset':'Night';
+      const introTl=gsap.timeline({defaults:{ease:'power3.inOut'},onComplete:()=>{
+        intro.style.display='none';
+        ScrollTrigger.refresh();
+      }});
+      introTl.to('.opening-rule i',{width:'100%',duration:.8})
+        .fromTo('.opening-mark',{opacity:0,y:25},{opacity:1,y:0,duration:.65},0)
+        .to('.opening-mark',{opacity:0,y:-22,duration:.45},1.05)
+        .to(intro,{clipPath:'inset(0 0 100% 0)',duration:.8},1.1);
 
-        const cr=curve.getBoundingClientRect();
-        const cp=clamp((innerHeight-cr.top)/(innerHeight+cr.height));
-        curveLine.style.strokeDashoffset=String(1400-(cp*1400));
-        curveMarker.setAttribute('cx',String(cp*1400));
-        const y=270-18*Math.sin(cp*Math.PI)-205*Math.pow(Math.max(0,(cp-.57)/.43),1.5);
-        curveMarker.setAttribute('cy',String(Math.max(65,y)));
-
-        portals.forEach(portal=>{
-          const pr=portal.getBoundingClientRect();
-          const pp=clamp(-pr.top/(pr.height-innerHeight));
-          const word=portal.querySelector('.portal-word');
-          const media=portal.querySelector('.portal-media');
+      if(!reduced){
+        document.querySelectorAll('[data-portal]').forEach((portal,index)=>{
           const caption=portal.querySelector('.portal-caption');
-          word.style.transform='scale('+(1+pp*7)+')';
-          word.style.opacity=String(clamp(1-(pp-.56)*2.4));
-          media.style.opacity=String(clamp((pp-.53)*2.4));
-          media.style.transform='scale('+(1.06-pp*.06)+')';
-          caption.style.opacity=String(clamp(1-pp*2.1));
+          if(index===0){
+            const layer=portal.querySelector('.portal-text-layer');
+            gsap.timeline({scrollTrigger:{trigger:portal,start:'top top',end:'+=400%',scrub:true,pin:true,anticipatePin:1,invalidateOnRefresh:true}})
+              .to(caption,{autoAlpha:0,duration:.12},0)
+              .to(layer,{scale:180,ease:'power2.in',duration:1},0)
+              .to(layer,{autoAlpha:0,duration:.08},.9);
+          }else{
+            const word=portal.querySelector('.portal-word');
+            const media=portal.querySelector('.portal-media');
+            gsap.timeline({scrollTrigger:{trigger:portal,start:'top top',end:'+=300%',scrub:true,pin:true,anticipatePin:1,invalidateOnRefresh:true}})
+              .to(caption,{autoAlpha:0,duration:.12},0)
+              .to(word,{scale:22,ease:'power2.in',duration:1},0)
+              .to(word,{autoAlpha:0,duration:.08},.82)
+              .to(media,{autoAlpha:1,scale:1,duration:.2},.75);
+          }
+        });
+
+        const story=document.querySelector('.bess-story');
+        const storyStage=story.querySelector('.bess-sticky');
+        const steps=gsap.utils.toArray('.bess-step',story);
+        const phase=document.querySelector('.story-phase');
+        const number=document.querySelector('.story-progress>span');
+        const phases=['Generate','Store','Charge','Time','Demand','Deploy','Power'];
+        const storyTl=gsap.timeline({
+          scrollTrigger:{
+            trigger:story,start:'top top',end:'+=500%',scrub:1,pin:true,anticipatePin:1,invalidateOnRefresh:true,
+            onUpdate:self=>{
+              const i=Math.min(steps.length-1,Math.floor(self.progress*steps.length));
+              phase.textContent=phases[i];number.textContent=String(i+1).padStart(2,'0');
+            }
+          }
+        });
+        steps.forEach((step,i)=>{
+          if(i===0){gsap.set(step,{autoAlpha:1,y:0});return}
+          storyTl.to(steps[i-1],{autoAlpha:.08,y:-24,duration:.48},'step'+i)
+            .fromTo(step,{autoAlpha:0,y:48},{autoAlpha:1,y:0,duration:.52},'step'+i);
+        });
+        const storyDuration=storyTl.duration()||1;
+        storyTl.to(storyStage,{'--story-p':1,'--path':1200,ease:'none',duration:storyDuration},0);
+
+        const day=document.querySelector('.day-story');
+        const shade=day.querySelector('.day-shade');
+        const sun=day.querySelector('.sun-track i');
+        const dayPhase=day.querySelector('.day-phase');
+        gsap.timeline({
+          scrollTrigger:{
+            trigger:day,start:'top top',end:'+=300%',scrub:1,pin:true,anticipatePin:1,invalidateOnRefresh:true,
+            onUpdate:self=>{const p=self.progress;dayPhase.textContent=p<.25?'Morning':p<.52?'Day':p<.77?'Sunset':'Night'}
+          }
+        }).to(sun,{left:'calc(100% - 12px)',ease:'none',duration:1},0)
+          .to(shade,{opacity:.86,ease:'none',duration:1},0)
+          .to('.day-image',{scale:1,ease:'none',duration:1},0);
+
+        const mm=gsap.matchMedia();
+        mm.add('(min-width: 901px)',()=>{
+          const wrap=document.querySelector('.solutions-wrap');
+          const track=wrap.querySelector('.solutions-track');
+          const panels=gsap.utils.toArray('.h-panel',wrap);
+          const bar=document.querySelector('.scene-progress i');
+          const count=document.querySelector('.scene-count');
+          const tween=gsap.to(panels,{
+            xPercent:-100*(panels.length-1),ease:'none',
+            scrollTrigger:{
+              trigger:wrap,start:'top top',pin:true,scrub:1,anticipatePin:1,
+              end:()=>'+='+track.offsetWidth,invalidateOnRefresh:true,
+              onUpdate:self=>{
+                bar.style.width=(self.progress*100)+'%';
+                count.textContent=String(Math.min(panels.length,Math.floor(self.progress*(panels.length-1)+.08)+1)).padStart(2,'0')+' / 06';
+              }
+            }
+          });
+          return()=>tween.kill();
+        });
+
+        const curve=document.querySelector('.curve');
+        const curveLine=document.querySelector('.curve-line');
+        const marker=document.querySelector('.curve-marker');
+        gsap.to(curveLine,{strokeDashoffset:0,ease:'none',scrollTrigger:{trigger:curve,start:'top 82%',end:'bottom 38%',scrub:true,onUpdate:self=>{
+          const p=self.progress;
+          marker.setAttribute('cx',String(p*1400));
+          const y=270-18*Math.sin(p*Math.PI)-205*Math.pow(Math.max(0,(p-.57)/.43),1.5);
+          marker.setAttribute('cy',String(Math.max(65,y)));
+        }}});
+
+        gsap.utils.toArray('.solution-bg').forEach(bg=>{
+          gsap.fromTo(bg,{scale:1.08},{scale:1,ease:'none',scrollTrigger:{trigger:bg.parentElement,start:'left right',end:'right left',containerAnimation:gsap.getTweensOf('.h-panel')[0]||undefined,scrub:true}});
         });
       }
-      let ticking=false;
-      function requestUpdate(){if(!ticking){requestAnimationFrame(()=>{update();ticking=false});ticking=true}}
-      addEventListener('scroll',requestUpdate,{passive:true});addEventListener('resize',requestUpdate);update();
+
+      addEventListener('load',()=>ScrollTrigger.refresh());
+      addEventListener('pagehide',()=>{
+        gsap.ticker.remove(lenisTick);
+        ScrollTrigger.getAll().forEach(t=>t.kill());
+        lenis.destroy();
+      },{once:true});
     })();
   </script>
 </body>
