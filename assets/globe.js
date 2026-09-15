@@ -224,5 +224,12 @@ function createGlobe(canvas){
   });
 }
 
-canvases.forEach(createGlobe);
+canvases.forEach(canvas=>{
+  try{
+    createGlobe(canvas);
+  }catch(error){
+    canvas.closest('.portal-earth, .globe-shell')?.classList.add('webgl-fallback');
+    console.warn('XTRA GRID globe fallback active:',error instanceof Error?error.message:error);
+  }
+});
 addEventListener('pagehide',()=>instances.forEach(dispose=>dispose()),{once:true});
