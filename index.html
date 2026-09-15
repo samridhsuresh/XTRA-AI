@@ -92,16 +92,18 @@
     .portal-earth:after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 50% 50%,transparent 20%,rgba(0,0,0,.08) 62%,rgba(0,0,0,.52) 100%)}
     .portal-mask{position:absolute;inset:0;z-index:3;width:100%;height:100%;overflow:visible;will-change:opacity}
     .portal-mask-cover{fill:#000}
-    .portal-mask-text{font-family:Manrope,Arial,sans-serif;font-size:clamp(8rem,27vw,27rem);font-weight:700;letter-spacing:-.095em;transform-box:fill-box;transform-origin:38% 50%;will-change:transform}
+    .portal-mask-text{font-family:Manrope,Arial,sans-serif;font-size:clamp(8rem,27vw,27rem);font-weight:700;letter-spacing:-.095em;transform-box:fill-box;transform-origin:50% 50%;will-change:transform}
     .portal-one .portal-caption{z-index:5}
     .portal-one .portal-caption:before{content:"";position:absolute;inset:-1.4rem -1.5rem;background:linear-gradient(90deg,rgba(0,0,0,.78),transparent);z-index:-1;pointer-events:none}
     .sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
 
-    .portal-two{background:#020303}
-    .portal-two .portal-sticky{background:radial-gradient(circle at 58% 48%,#10201c 0%,#050706 48%,#020202 80%)}
-    .portal-two .portal-word{position:absolute;z-index:4;left:var(--pad);top:50%;transform:translateY(-50%);text-align:left;font-size:clamp(5rem,13vw,13.5rem);font-weight:700;letter-spacing:-.095em;line-height:.72;text-transform:uppercase;color:var(--paper);will-change:transform,opacity}
-    .portal-two .portal-word span{display:block}
-    .globe-shell{position:absolute;inset:0;z-index:2;opacity:0;transform:scale(.86);overflow:hidden}
+    .portal-title-stage{position:absolute;inset:0;z-index:4;display:grid;place-items:center;padding:var(--pad);overflow:hidden;background:#fff;color:#050505;opacity:0;visibility:hidden;transform:scale(.82);transform-origin:50% 50%;will-change:transform,opacity}
+    .portal-title-stage h2{margin:0;white-space:nowrap;text-align:center;font-size:clamp(4rem,14vw,14rem);font-weight:700;line-height:.78;letter-spacing:-.085em;text-transform:uppercase;transform-origin:50% 50%;will-change:transform,opacity}
+    .portal-location-stage{position:absolute;inset:0;z-index:5;overflow:hidden;background:radial-gradient(circle at 58% 48%,#10201c 0%,#050706 48%,#020202 80%);opacity:0;visibility:hidden;will-change:opacity}
+    .portal-location-stage .portal-word{position:absolute;z-index:4;left:var(--pad);top:50%;transform:translateY(-50%);text-align:left;font-size:clamp(5rem,13vw,13.5rem);font-weight:700;letter-spacing:-.095em;line-height:.72;text-transform:uppercase;color:var(--paper);will-change:transform,opacity}
+    .portal-location-stage .portal-word span{display:block}
+    .portal-location-stage .portal-caption{z-index:6}
+    .globe-shell{position:absolute;inset:0;z-index:2;opacity:0;transform:scale(.86);overflow:hidden;will-change:transform,opacity}
     .globe-shell canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
     .globe-shell:after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 56% 48%,transparent 28%,rgba(2,3,3,.15) 52%,rgba(2,3,3,.88) 92%),linear-gradient(90deg,rgba(2,3,3,.82),transparent 43%)}
     .globe-label{position:absolute;z-index:5;opacity:0;min-width:220px;padding-left:4.5rem;color:var(--paper);pointer-events:none}
@@ -226,7 +228,7 @@
       :root{--pad:1.15rem}
       .globe-label{left:var(--pad)!important;right:var(--pad);top:auto!important;bottom:5rem;min-width:0;width:auto;padding-left:2.4rem}
       .globe-label:before{width:1.8rem}.globe-meta{top:5.5rem;font-size:.55rem}
-      .portal-two .portal-word{font-size:clamp(4.7rem,24vw,8rem);top:48%}.site-nav{grid-template-columns:1fr auto}.nav-links,.contact-link{display:none}.menu-btn{display:block}
+      .portal-location-stage .portal-word{font-size:clamp(4.7rem,24vw,8rem);top:48%}.site-nav{grid-template-columns:1fr auto}.nav-links,.contact-link{display:none}.menu-btn{display:block}
       .hero-media{background-position:68% center}.hero-media:after{background:linear-gradient(180deg,rgba(5,5,5,.8),rgba(5,5,5,.25) 45%,rgba(5,5,5,.9))}
       .hero-grid{grid-template-columns:repeat(4,minmax(0,1fr));padding-top:6rem}
       .hero-top{grid-column:1/5}.hero-title{grid-column:1/5;font-size:clamp(4rem,18.5vw,7rem);align-self:center}
@@ -257,7 +259,7 @@
     @media(prefers-reduced-motion:reduce){
       html{scroll-behavior:auto}.reveal{opacity:1;transform:none}.hero-media,.hero-title i{animation:none;transform:none}
       .solutions-wrap,.bess-story,.day-story,.portal{height:auto}.solutions-sticky,.bess-sticky,.day-sticky,.portal-sticky{position:relative}
-      .portal-sticky,.bess-sticky,.day-sticky{min-height:100svh}.solutions-track{width:100%;height:auto;display:block;transform:none!important}.solution{width:100%;height:auto;min-height:100svh;flex:none}
+      .portal-sticky,.bess-sticky,.day-sticky{min-height:100svh}.portal-title-stage{display:none}.portal-location-stage{display:none}.solutions-track{width:100%;height:auto;display:block;transform:none!important}.solution{width:100%;height:auto;min-height:100svh;flex:none}
     }
   </style>
 </head>
@@ -302,9 +304,9 @@
       </div>
     </section>
 
-    <section class="portal portal-one" data-portal aria-label="Power — Xtra Grid Technologies">
+    <section class="portal portal-one" data-portal aria-label="Power to Xtra Grid to Kerala location">
       <div class="portal-sticky">
-        <h2 class="sr-only">Power</h2>
+        <h2 class="sr-only">Power — Xtra Grid — Kerala, India</h2>
         <div class="portal-earth" aria-hidden="true">
           <canvas class="xg-globe-canvas" data-globe-mode="mask"></canvas>
         </div>
@@ -317,8 +319,33 @@
           </defs>
           <rect class="portal-mask-cover" width="100%" height="100%" mask="url(#power-earth-window)"/>
         </svg>
-        <div class="portal-caption"><span class="portal-index mono">01 / POWER</span><p>XTRA GRID TECHNOLOGIES — energy, infrastructure and intelligence in motion.</p></div>
+        <div class="portal-title-stage" aria-hidden="true"><h2>XTRA GRID</h2></div>
+        <div class="portal-location-stage" aria-hidden="true">
+          <div class="globe-shell">
+            <canvas id="xgGlobe"></canvas>
+            <div class="globe-label mono"><i></i><strong>XTRA GRID / TRIVANDRUM</strong><span>08.5241° N / 76.9366° E<br>Kerala / India</span></div>
+            <div class="globe-meta mono"><span>Global systems<br>Local intelligence</span><b>India / Kerala</b></div>
+          </div>
+          <h2 class="portal-word"><span>POWER</span><span>MOVES</span></h2>
+          <div class="portal-caption location-caption"><span class="portal-index mono">05 / Location</span><p>Engineered in Kerala. Connected to a changing energy world.</p></div>
+        </div>
+        <div class="portal-caption portal-intro-caption"><span class="portal-index mono">01 / POWER</span><p>XTRA GRID TECHNOLOGIES — energy, infrastructure and intelligence in motion.</p></div>
       </div>
+    </section>
+
+    <section class="demand">
+      <p class="eyebrow">Demand management / Concept</p>
+      <h2 class="display reveal"><span>Off-peak</span><b>→</b><span>Peak</span></h2>
+      <div class="curve reveal">
+        <svg viewBox="0 0 1400 320" role="img" aria-label="Illustrative demand curve from off-peak storage to peak deployment">
+          <defs><linearGradient id="demandFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8cff00" stop-opacity=".55"/><stop offset="1" stop-color="#8cff00" stop-opacity="0"/></linearGradient></defs>
+          <path class="curve-fill" d="M0 270 C180 265 250 235 420 242 C610 250 700 270 850 225 C1020 175 1080 45 1400 70 L1400 320 L0 320 Z"/>
+          <path class="curve-line" d="M0 270 C180 265 250 235 420 242 C610 250 700 270 850 225 C1020 175 1080 45 1400 70"/>
+          <circle class="curve-marker" r="9" cx="0" cy="270"/>
+        </svg>
+        <div class="curve-labels mono"><span>Lower demand / Store</span><span>Balance</span><span>Higher demand / Deploy</span></div>
+      </div>
+      <div class="demand-copy"><p><strong>Store available energy.</strong><br>Use it when demand rises. Project outcomes depend on site conditions, tariffs and system design.</p></div>
     </section>
 
     <section class="solutions-wrap" id="solutions">
@@ -397,33 +424,6 @@
           <strong class="day-phase">Morning</strong>
           <div class="day-flow"><div class="sun-track"><i></i></div><div class="day-flow-bottom mono"><span>Generate</span><span>Store</span><span>Deploy</span></div></div>
         </div>
-      </div>
-    </section>
-
-    <section class="demand">
-      <p class="eyebrow">Demand management / Concept</p>
-      <h2 class="display reveal"><span>Off-peak</span><b>→</b><span>Peak</span></h2>
-      <div class="curve reveal">
-        <svg viewBox="0 0 1400 320" role="img" aria-label="Illustrative demand curve from off-peak storage to peak deployment">
-          <defs><linearGradient id="demandFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8cff00" stop-opacity=".55"/><stop offset="1" stop-color="#8cff00" stop-opacity="0"/></linearGradient></defs>
-          <path class="curve-fill" d="M0 270 C180 265 250 235 420 242 C610 250 700 270 850 225 C1020 175 1080 45 1400 70 L1400 320 L0 320 Z"/>
-          <path class="curve-line" d="M0 270 C180 265 250 235 420 242 C610 250 700 270 850 225 C1020 175 1080 45 1400 70"/>
-          <circle class="curve-marker" r="9" cx="0" cy="270"/>
-        </svg>
-        <div class="curve-labels mono"><span>Lower demand / Store</span><span>Balance</span><span>Higher demand / Deploy</span></div>
-      </div>
-      <div class="demand-copy"><p><strong>Store available energy.</strong><br>Use it when demand rises. Project outcomes depend on site conditions, tariffs and system design.</p></div>
-    </section>
-
-    <section class="portal portal-two" data-portal>
-      <div class="portal-sticky">
-        <div class="globe-shell" aria-label="Three-dimensional Earth focused on Thiruvananthapuram, Kerala, India">
-          <canvas id="xgGlobe"></canvas>
-          <div class="globe-label mono"><i></i><strong>XTRA GRID / TRIVANDRUM</strong><span>08.5241° N / 76.9366° E<br>Kerala / India</span></div>
-          <div class="globe-meta mono"><span>Global systems<br>Local intelligence</span><b>India / Kerala</b></div>
-        </div>
-        <h2 class="portal-word"><span>POWER</span><span>MOVES</span></h2>
-        <div class="portal-caption"><span class="portal-index mono">05 / Location</span><p>Engineered in Kerala. Connected to a changing energy world.</p></div>
       </div>
     </section>
 
@@ -519,101 +519,139 @@
         .to(intro,{clipPath:'inset(0 0 100% 0)',duration:.8},1.1);
 
       if(!reduced){
-        const portals=Array.from(document.querySelectorAll('[data-portal]'));
-        const createPortal=(portal,index)=>{
-          const caption=portal.querySelector('.portal-caption');
-          if(index===0){
-            const mask=portal.querySelector('.portal-mask');
-            const maskText=portal.querySelector('.portal-mask-text');
-            const earth=portal.querySelector('.portal-earth');
-            gsap.timeline({scrollTrigger:{trigger:portal,start:'top top',end:'+=300%',scrub:1,pin:true,anticipatePin:1,invalidateOnRefresh:true}})
-              .to(caption,{autoAlpha:0,y:-18,duration:.16},0)
-              .to(earth,{scale:1.04,ease:'none',duration:1},0)
-              .to(maskText,{scale:8.4,ease:'power2.in',duration:.86},0)
-              .to(mask,{autoAlpha:0,ease:'none',duration:.14},.86);
-          }else{
-            const word=portal.querySelector('.portal-word');
-            const globe=portal.querySelector('.globe-shell');
-            const label=portal.querySelector('.globe-label');
-            gsap.timeline({scrollTrigger:{trigger:portal,start:'top top',end:'+=320%',scrub:1,pin:true,anticipatePin:1,invalidateOnRefresh:true}})
-              .to(caption,{autoAlpha:0,duration:.15},0)
-              .to(word,{scale:1.18,yPercent:-22,autoAlpha:0,ease:'power2.inOut',duration:.52},0)
-              .fromTo(globe,{autoAlpha:0,scale:.86},{autoAlpha:1,scale:1,ease:'power2.out',duration:.74},.22)
-              .fromTo(label,{autoAlpha:0,x:28},{autoAlpha:1,x:0,duration:.28},.68);
-          }
-        };
-        createPortal(portals[0],0);
+        ScrollTrigger.getAll().forEach(trigger=>trigger.kill());
+        window.xgLocationProgress=0;
 
-        const story=document.querySelector('.bess-story');
-        const storyStage=story.querySelector('.bess-sticky');
-        const steps=gsap.utils.toArray('.bess-step',story);
-        const phase=document.querySelector('.story-phase');
-        const number=document.querySelector('.story-progress>span');
-        const phases=['Generate','Store','Charge','Time','Demand','Deploy','Power'];
-        const storyTl=gsap.timeline({
+        // 01 — One continuous POWER → XTRA GRID → location-globe portal.
+        const portal=document.querySelector('.portal-one');
+        const portalMask=portal.querySelector('.portal-mask');
+        const portalMaskText=portal.querySelector('.portal-mask-text');
+        const portalEarth=portal.querySelector('.portal-earth');
+        const portalTitle=portal.querySelector('.portal-title-stage');
+        const portalTitleText=portalTitle.querySelector('h2');
+        const locationStage=portal.querySelector('.portal-location-stage');
+        const locationGlobe=locationStage.querySelector('.globe-shell');
+        const locationWord=locationStage.querySelector('.portal-word');
+        const locationLabel=locationStage.querySelector('.globe-label');
+        const introCaption=portal.querySelector('.portal-intro-caption');
+        const locationCaption=portal.querySelector('.location-caption');
+
+        const portalTl=gsap.timeline({
           scrollTrigger:{
-            trigger:story,start:'top top',end:'+=500%',scrub:1,pin:true,anticipatePin:1,invalidateOnRefresh:true,
+            trigger:portal,start:'top top',end:()=>'+='+(innerHeight*6.2),
+            pin:true,pinSpacing:true,scrub:true,anticipatePin:1,
+            invalidateOnRefresh:true,refreshPriority:5
+          }
+        });
+        portalTl
+          .to(introCaption,{autoAlpha:0,duration:.12},0)
+          .to(portalMaskText,{scale:7.2,transformOrigin:'50% 50%',ease:'power2.in',duration:1},0)
+          .to(portalEarth,{scale:1.1,ease:'none',duration:1},0)
+          .to(portalMask,{autoAlpha:0,ease:'none',duration:.12},.88)
+          .fromTo(portalTitle,{autoAlpha:0,scale:.82},{autoAlpha:1,scale:1,ease:'power2.out',duration:.28},.9)
+          .to(portalTitleText,{scale:7.2,transformOrigin:'50% 50%',ease:'power2.in',duration:.92},1.22)
+          .to(portalTitle,{autoAlpha:0,ease:'none',duration:.14},2.02)
+          .fromTo(locationStage,{autoAlpha:0},{autoAlpha:1,ease:'none',duration:.2},2.04)
+          .fromTo(locationGlobe,{autoAlpha:0,scale:.86},{autoAlpha:1,scale:1,ease:'power2.out',duration:.62},2.04)
+          .fromTo(locationWord,{autoAlpha:0,scale:.94},{autoAlpha:1,scale:1,transformOrigin:'0% 50%',duration:.4},2.12)
+          .fromTo(locationCaption,{autoAlpha:0},{autoAlpha:1,duration:.28},2.25)
+          .to(window,{xgLocationProgress:1,ease:'power2.inOut',duration:1.05},2.18)
+          .fromTo(locationLabel,{autoAlpha:0},{autoAlpha:1,duration:.35},2.76)
+          .to({}, {duration:.38});
+
+        // 02 — Non-pinned demand story, created in DOM order.
+        const curve=document.querySelector('.curve');
+        const curveLine=document.querySelector('.curve-line');
+        const marker=document.querySelector('.curve-marker');
+        gsap.to(curveLine,{strokeDashoffset:0,ease:'none',scrollTrigger:{
+          trigger:curve,start:'top 82%',end:'bottom 38%',scrub:true,
+          invalidateOnRefresh:true,refreshPriority:4,
+          onUpdate:self=>{
+            const p=self.progress;
+            marker.setAttribute('cx',String(p*1400));
+            const y=270-18*Math.sin(p*Math.PI)-205*Math.pow(Math.max(0,(p-.57)/.43),1.5);
+            marker.setAttribute('cy',String(Math.max(65,y)));
+          }
+        }});
+
+        // 03 — One parent pin and one track transform for all six solutions.
+        const solutions=document.querySelector('.solutions-wrap');
+        const track=solutions.querySelector('.solutions-track');
+        const panels=gsap.utils.toArray('.h-panel',solutions);
+        const bar=solutions.querySelector('.scene-progress i');
+        const count=solutions.querySelector('.scene-count');
+        const travelPercent=-100*(panels.length-1)/panels.length;
+        const solutionsTl=gsap.timeline({
+          scrollTrigger:{
+            trigger:solutions,start:'top top',
+            end:()=>'+='+(track.scrollWidth-solutions.clientWidth),
+            pin:true,pinSpacing:true,scrub:true,anticipatePin:1,
+            invalidateOnRefresh:true,refreshPriority:3,
             onUpdate:self=>{
-              const i=Math.min(steps.length-1,Math.floor(self.progress*steps.length));
-              phase.textContent=phases[i];number.textContent=String(i+1).padStart(2,'0');
+              bar.style.width=(self.progress*100)+'%';
+              count.textContent=String(Math.min(panels.length,Math.floor(self.progress*(panels.length-1)+.001)+1)).padStart(2,'0')+' / 06';
             }
           }
         });
-        steps.forEach((step,i)=>{
-          if(i===0){gsap.set(step,{autoAlpha:1,y:0});return}
-          storyTl.to(steps[i-1],{autoAlpha:.08,y:-24,duration:.48},'step'+i)
-            .fromTo(step,{autoAlpha:0,y:48},{autoAlpha:1,y:0,duration:.52},'step'+i);
+        solutionsTl.to(track,{xPercent:travelPercent,ease:'none',duration:1});
+
+        // 04 — The single Energy Stored / BESS story.
+        const story=document.querySelector('.bess-story');
+        const storyStage=story.querySelector('.bess-sticky');
+        const steps=gsap.utils.toArray('.bess-step',story);
+        const phase=story.querySelector('.story-phase');
+        const number=story.querySelector('.story-progress>span');
+        const phases=['Generate','Store','Charge','Time','Demand','Deploy','Power'];
+        gsap.set(steps,{autoAlpha:0,y:38});
+        gsap.set(steps[0],{autoAlpha:1,y:0});
+        const storyTl=gsap.timeline({
+          scrollTrigger:{
+            trigger:story,start:'top top',end:()=>'+='+(innerHeight*4.8),
+            scrub:true,pin:true,pinSpacing:true,anticipatePin:1,
+            invalidateOnRefresh:true,refreshPriority:2,
+            onUpdate:self=>{
+              const i=Math.min(steps.length-1,Math.floor(self.progress*steps.length));
+              phase.textContent=phases[i];
+              number.textContent=String(i+1).padStart(2,'0');
+            }
+          }
+        });
+        steps.slice(1).forEach((step,index)=>{
+          storyTl.to(steps[index],{autoAlpha:.08,y:-24,duration:.48},'step'+(index+1))
+            .to(step,{autoAlpha:1,y:0,duration:.52},'step'+(index+1));
         });
         const storyDuration=storyTl.duration()||1;
         storyTl.to(storyStage,{'--story-p':1,'--path':1200,ease:'none',duration:storyDuration},0);
 
+        // 05 — The single complete Store The Day sequence.
         const day=document.querySelector('.day-story');
         const shade=day.querySelector('.day-shade');
         const sun=day.querySelector('.sun-track i');
+        const dayImage=day.querySelector('.day-image');
         const dayPhase=day.querySelector('.day-phase');
-        gsap.timeline({
+        const dayTl=gsap.timeline({
           scrollTrigger:{
-            trigger:day,start:'top top',end:'+=300%',scrub:1,pin:true,anticipatePin:1,invalidateOnRefresh:true,
-            onUpdate:self=>{const p=self.progress;dayPhase.textContent=p<.25?'Morning':p<.52?'Day':p<.77?'Sunset':'Night'}
-          }
-        }).to(sun,{left:'calc(100% - 12px)',ease:'none',duration:1},0)
-          .to(shade,{opacity:.86,ease:'none',duration:1},0)
-          .to('.day-image',{scale:1,ease:'none',duration:1},0);
-
-        {
-          const wrap=document.querySelector('.solutions-wrap');
-          const track=wrap.querySelector('.solutions-track');
-          const panels=gsap.utils.toArray('.h-panel',wrap);
-          const bar=document.querySelector('.scene-progress i');
-          const count=document.querySelector('.scene-count');
-          const tween=gsap.to(panels,{
-            xPercent:-100*(panels.length-1),ease:'none',
-            scrollTrigger:{
-              trigger:wrap,start:'top top',pin:true,scrub:1,anticipatePin:1,
-              end:()=>'+='+Math.max(innerWidth,track.scrollWidth-innerWidth),invalidateOnRefresh:true,
-              onUpdate:self=>{
-                bar.style.width=(self.progress*100)+'%';
-                count.textContent=String(Math.min(panels.length,Math.floor(self.progress*(panels.length-1)+.08)+1)).padStart(2,'0')+' / 06';
-              }
+            trigger:day,start:'top top',end:()=>'+='+(innerHeight*4.2),
+            scrub:true,pin:true,pinSpacing:true,anticipatePin:1,
+            invalidateOnRefresh:true,refreshPriority:1,
+            onUpdate:self=>{
+              const p=self.progress;
+              dayPhase.textContent=p<.17?'Day':p<.36?'Solar generation':p<.55?'Storage':p<.73?'Sunset':p<.9?'Night':'Powering load';
             }
-          });
-          gsap.utils.toArray('.solution-bg',wrap).forEach(bg=>{
-            gsap.fromTo(bg,{scale:1.08},{scale:1,ease:'none',scrollTrigger:{trigger:bg.parentElement,start:'left right',end:'right left',containerAnimation:tween,scrub:true}});
-          });
-        }
+          }
+        });
+        dayTl
+          .to(sun,{left:'calc(100% - 12px)',ease:'none',duration:1},0)
+          .to(shade,{opacity:.88,ease:'power1.in',duration:.56},.44)
+          .to(dayImage,{scale:1,ease:'none',duration:1},0);
 
-        const curve=document.querySelector('.curve');
-        const curveLine=document.querySelector('.curve-line');
-        const marker=document.querySelector('.curve-marker');
-        gsap.to(curveLine,{strokeDashoffset:0,ease:'none',scrollTrigger:{trigger:curve,start:'top 82%',end:'bottom 38%',scrub:true,onUpdate:self=>{
-          const p=self.progress;
-          marker.setAttribute('cx',String(p*1400));
-          const y=270-18*Math.sin(p*Math.PI)-205*Math.pow(Math.max(0,(p-.57)/.43),1.5);
-          marker.setAttribute('cy',String(Math.max(65,y)));
-        }}});
-
-        createPortal(portals[1],1);
-        requestAnimationFrame(()=>ScrollTrigger.refresh());
+        const refreshAll=()=>{
+          ScrollTrigger.sort();
+          ScrollTrigger.refresh();
+        };
+        const imageReady=[...document.images].map(image=>image.complete?Promise.resolve():image.decode().catch(()=>{}));
+        Promise.all([document.fonts?.ready||Promise.resolve(),...imageReady]).then(()=>requestAnimationFrame(refreshAll));
+        requestAnimationFrame(refreshAll);
       }
 
       addEventListener('load',()=>ScrollTrigger.refresh());
