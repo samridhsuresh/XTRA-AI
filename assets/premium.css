@@ -251,6 +251,9 @@ body { background: var(--xg-base) !important; color: var(--xg-ink); }
     linear-gradient(130deg, rgba(28, 111, 224, .045), transparent 45%),
     var(--xg-base) !important;
 }
+@media (min-width: 781px) {
+  .demand { min-height: 100svh !important; }
+}
 .demand h2 b { color: var(--xg-green) !important; }
 .curve {
   border-color: rgba(11, 11, 12, .16) !important;
