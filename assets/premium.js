@@ -3,6 +3,53 @@
   const finePointer = matchMedia('(hover: hover) and (pointer: fine)').matches;
   const isHome = Boolean(document.querySelector('.portal-one'));
   const assetBase = isHome ? 'assets/' : '../assets/';
+  const root = document.documentElement;
+  let themeToggle;
+
+  function savedTheme() {
+    try { return localStorage.getItem('xg-theme'); } catch { return null; }
+  }
+
+  function setTheme(theme, persist = false) {
+    const next = theme === 'dark' ? 'dark' : 'light';
+    root.dataset.theme = next;
+    root.style.colorScheme = next;
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', next === 'dark' ? '#070A09' : '#FAFAF8');
+    document.querySelectorAll('.hero-lockup').forEach((image) => {
+      image.src = `${assetBase}xtragrid-lockup-${next === 'dark' ? 'dark' : 'light'}.svg`;
+    });
+    if (themeToggle) {
+      const dark = next === 'dark';
+      themeToggle.setAttribute('aria-pressed', String(dark));
+      themeToggle.setAttribute('aria-label', `Switch to ${dark ? 'light' : 'dark'} theme`);
+      themeToggle.title = `Switch to ${dark ? 'light' : 'dark'} theme`;
+    }
+    if (persist) {
+      try { localStorage.setItem('xg-theme', next); } catch {}
+    }
+  }
+
+  setTheme(savedTheme() === 'dark' ? 'dark' : 'light');
+
+  function installThemeToggle() {
+    const nav = document.querySelector('.site-nav');
+    if (!nav || nav.querySelector('.theme-toggle')) return;
+    const actions = document.createElement('div');
+    actions.className = 'nav-actions';
+    const contact = nav.querySelector('.contact-link');
+    const menuButton = nav.querySelector('.menu-btn');
+    nav.append(actions);
+
+    themeToggle = document.createElement('button');
+    themeToggle.className = 'theme-toggle';
+    themeToggle.type = 'button';
+    themeToggle.innerHTML = '<span class="theme-toggle__track" aria-hidden="true"><i></i></span><span class="theme-toggle__label">Theme</span>';
+    actions.append(themeToggle);
+    if (contact) actions.append(contact);
+    if (menuButton) actions.append(menuButton);
+    themeToggle.addEventListener('click', () => setTheme(root.dataset.theme === 'dark' ? 'light' : 'dark', true));
+    setTheme(root.dataset.theme);
+  }
 
   function installBrand() {
     document.querySelectorAll('.site-nav .brand img').forEach((image) => {
@@ -23,7 +70,7 @@
       if (hero && !hero.querySelector('.hero-lockup')) {
         const lockup = document.createElement('img');
         lockup.className = 'hero-lockup';
-        lockup.src = `${assetBase}xtragrid-lockup-light.svg`;
+        lockup.src = `${assetBase}xtragrid-lockup-${root.dataset.theme === 'dark' ? 'dark' : 'light'}.svg`;
         lockup.alt = 'XTRAGRID TECHNOLOGIES — Smart Technology. Sustainable Energy. Infinite Possibilities.';
         hero.append(lockup);
       }
@@ -253,6 +300,7 @@
   }
 
   installBrand();
+  installThemeToggle();
   installThread();
   installNavBehavior();
   installContactEmail();
