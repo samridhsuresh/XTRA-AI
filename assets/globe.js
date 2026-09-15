@@ -78,6 +78,8 @@ function createGlobe(canvas){
 
   let marker=null;
   let markerHalo=null;
+  let locationStartQuaternion=null;
+  let locationEndQuaternion=null;
   if(mode==='location'){
     const lat=THREE.MathUtils.degToRad(8.5241);
     const lon=THREE.MathUtils.degToRad(76.9366);
@@ -112,7 +114,12 @@ function createGlobe(canvas){
       new THREE.LineBasicMaterial({color:0x8cff00,transparent:true,opacity:.9})
     ));
 
-    earthGroup.quaternion.setFromUnitVectors(location,new THREE.Vector3(.17,.02,1).normalize());
+    locationEndQuaternion=new THREE.Quaternion().setFromUnitVectors(
+      location,new THREE.Vector3(.17,.02,1).normalize()
+    );
+    const approachOffset=new THREE.Quaternion().setFromEuler(new THREE.Euler(.08,.82,-.06));
+    locationStartQuaternion=approachOffset.multiply(locationEndQuaternion.clone());
+    earthGroup.quaternion.copy(locationStartQuaternion);
   }else{
     earthGroup.rotation.set(.08,-.45,0);
   }
@@ -177,6 +184,10 @@ function createGlobe(canvas){
     const delta=Math.min(32,time-previousTime||16);
     previousTime=time;
     if(mode==='mask'&&!reduceMotion) earth.rotation.y+=delta*.000045;
+    if(mode==='location'&&locationStartQuaternion&&locationEndQuaternion){
+      const progress=Math.max(0,Math.min(1,Number(window.xgLocationProgress)||0));
+      earthGroup.quaternion.slerpQuaternions(locationStartQuaternion,locationEndQuaternion,progress);
+    }
     motionGroup.rotation.y+=(pointerX*.055-motionGroup.rotation.y)*.035;
     motionGroup.rotation.x+=(-pointerY*.04-motionGroup.rotation.x)*.035;
 
