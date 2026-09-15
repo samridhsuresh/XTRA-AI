@@ -252,9 +252,18 @@ body { background: var(--xg-base) !important; color: var(--xg-ink); }
     var(--xg-base) !important;
 }
 .demand h2 b { color: var(--xg-green) !important; }
-.curve { border-color: var(--xg-line) !important; }
-.curve-line { stroke: url(#demandFill) !important; }
-.curve-marker { fill: var(--xg-gold) !important; stroke: white; stroke-width: 5px; }
+.curve {
+  border-color: rgba(11, 11, 12, .16) !important;
+  padding: 1.5rem 1rem 1rem;
+  border-radius: 24px;
+  background:
+    repeating-linear-gradient(to bottom, rgba(11, 11, 12, .075) 0 1px, transparent 1px 72px),
+    linear-gradient(135deg, rgba(28, 111, 224, .055), rgba(79, 209, 122, .06));
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .75), 0 16px 50px rgba(17, 38, 31, .06);
+}
+.curve-line { stroke: url(#demandStroke) !important; stroke-width: 4px !important; filter: drop-shadow(0 5px 8px rgba(28, 111, 224, .22)); }
+.curve-fill { opacity: .82 !important; }
+.curve-marker { fill: var(--xg-gold) !important; stroke: white; stroke-width: 5px; filter: drop-shadow(0 2px 7px rgba(28, 111, 224, .35)); }
 .curve-labels,
 .demand-copy { color: var(--xg-muted) !important; }
 
@@ -414,6 +423,20 @@ body { background: var(--xg-base) !important; color: var(--xg-ink); }
 .legal { background: #eef3ef !important; }
 .legal-row { border-color: var(--xg-line) !important; }
 .contact-shell { background: var(--xg-surface) !important; }
+.contact-email {
+  display: inline-flex;
+  align-items: center;
+  gap: .8rem;
+  width: fit-content;
+  margin-top: 1.6rem;
+  padding: .8rem 1rem;
+  border: 1px solid rgba(11, 11, 12, .14);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .78);
+  transition: transform .3s var(--ease), border-color .3s, box-shadow .3s;
+}
+.contact-email span { color: var(--xg-green); }
+.contact-email:hover { transform: translateY(-2px); border-color: var(--xg-blue); box-shadow: 0 10px 26px rgba(28, 111, 224, .12); }
 .field input,
 .field textarea,
 .field select { background: var(--xg-base) !important; border-color: var(--xg-line) !important; border-radius: 12px !important; }
