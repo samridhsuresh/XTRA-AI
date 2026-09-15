@@ -346,12 +346,15 @@
       </div>
     </section>
 
-    <section class="demand">
+    <section class="demand" id="demand">
       <p class="eyebrow">Demand management / Concept</p>
       <h2 class="display reveal"><span>Off-peak</span><b>→</b><span>Peak</span></h2>
       <div class="curve reveal">
         <svg viewBox="0 0 1400 320" role="img" aria-label="Illustrative demand curve from off-peak storage to peak deployment">
-          <defs><linearGradient id="demandFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8cff00" stop-opacity=".55"/><stop offset="1" stop-color="#8cff00" stop-opacity="0"/></linearGradient></defs>
+          <defs>
+            <linearGradient id="demandFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4FD17A" stop-opacity=".32"/><stop offset="1" stop-color="#1C6FE0" stop-opacity=".03"/></linearGradient>
+            <linearGradient id="demandStroke" x1="0" y1="0" x2="1400" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#1C6FE0"/><stop offset=".58" stop-color="#36A8B7"/><stop offset="1" stop-color="#4FD17A"/></linearGradient>
+          </defs>
           <path class="curve-fill" d="M0 270 C180 265 250 235 420 242 C610 250 700 270 850 225 C1020 175 1080 45 1400 70 L1400 320 L0 320 Z"/>
           <path class="curve-line" d="M0 270 C180 265 250 235 420 242 C610 250 700 270 850 225 C1020 175 1080 45 1400 70"/>
           <circle class="curve-marker" r="9" cx="0" cy="270"/>
@@ -588,14 +591,18 @@
         const curve=document.querySelector('.curve');
         const curveLine=document.querySelector('.curve-line');
         const marker=document.querySelector('.curve-marker');
+        const curveLength=curveLine.getTotalLength();
+        const startPoint=curveLine.getPointAtLength(0);
+        gsap.set(curveLine,{strokeDasharray:curveLength,strokeDashoffset:curveLength});
+        marker.setAttribute('cx',String(startPoint.x));
+        marker.setAttribute('cy',String(startPoint.y));
         gsap.to(curveLine,{strokeDashoffset:0,ease:'none',scrollTrigger:{
           trigger:curve,start:'top 82%',end:'bottom 38%',scrub:true,
           invalidateOnRefresh:true,refreshPriority:4,
           onUpdate:self=>{
-            const p=self.progress;
-            marker.setAttribute('cx',String(p*1400));
-            const y=270-18*Math.sin(p*Math.PI)-205*Math.pow(Math.max(0,(p-.57)/.43),1.5);
-            marker.setAttribute('cy',String(Math.max(65,y)));
+            const point=curveLine.getPointAtLength(curveLength*self.progress);
+            marker.setAttribute('cx',String(point.x));
+            marker.setAttribute('cy',String(point.y));
           }
         }});
 
