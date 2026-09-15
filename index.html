@@ -428,9 +428,9 @@
       </div>
     </section>
 
-    <section class="day-story">
+    <section class="day-story" id="store-the-day">
       <div class="day-sticky">
-        <div class="day-image"></div><div class="day-shade"></div>
+        <div class="day-image"></div><div class="day-night"></div><div class="day-shade"></div>
         <div class="day-content">
           <p class="eyebrow">Solar / Storage / Demand</p>
           <h2 class="display"><span>Store</span><span>the day.</span></h2>
@@ -664,6 +664,10 @@
         const shade=day.querySelector('.day-shade');
         const sun=day.querySelector('.sun-track i');
         const dayImage=day.querySelector('.day-image');
+        const nightImage=day.querySelector('.day-night');
+        const daySticky=day.querySelector('.day-sticky');
+        const dayContent=day.querySelector('.day-content');
+        const dayFlowLabels=day.querySelector('.day-flow-bottom');
         const dayPhase=day.querySelector('.day-phase');
         const dayTl=gsap.timeline({
           scrollTrigger:{
@@ -678,7 +682,12 @@
         });
         dayTl
           .to(sun,{left:'calc(100% - 12px)',ease:'none',duration:1},0)
-          .to(shade,{opacity:.88,ease:'power1.in',duration:.56},.44)
+          .to(daySticky,{backgroundColor:'#06101b',ease:'none',duration:.42},.48)
+          .to(nightImage,{autoAlpha:1,ease:'power2.inOut',duration:.42},.46)
+          .to(dayImage,{filter:'brightness(.42) saturate(.72)',ease:'power1.in',duration:.5},.42)
+          .to(shade,{opacity:.48,ease:'power1.in',duration:.5},.46)
+          .to(dayContent,{color:'#f7faf8',textShadow:'0 2px 22px rgba(0,0,0,.58)',ease:'power1.inOut',duration:.32},.54)
+          .to(dayFlowLabels,{color:'#d8dfda',ease:'power1.inOut',duration:.3},.54)
           .to(dayImage,{scale:1,ease:'none',duration:1},0);
 
         const refreshAll=()=>{
@@ -701,3 +710,4 @@
   <script src="assets/premium.js"></script>
 </body>
 </html>
+
