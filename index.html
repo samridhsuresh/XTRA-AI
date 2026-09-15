@@ -87,7 +87,7 @@
        everywhere except the POWER glyphs, so the globe cannot leak outside type. */
     .portal-one{background:#000}
     .portal-one .portal-sticky{isolation:isolate;background:#000}
-    .portal-earth{position:absolute;inset:0;z-index:1;overflow:hidden;transform:scale(.94);will-change:transform}
+    .portal-earth{position:absolute;inset:0;z-index:1;overflow:hidden;transform:scale(1.38);transform-origin:center center;will-change:transform}
     .portal-earth canvas{width:100%;height:100%;display:block}
     .portal-earth.webgl-fallback:before,.globe-shell.webgl-fallback:before{content:"";position:absolute;left:56%;top:50%;width:min(68vw,74vh);aspect-ratio:1;border-radius:50%;transform:translate(-50%,-50%);background:#0a1512 url("https://threejs.org/examples/textures/planets/earth_atmos_2048.jpg") 72% center/cover no-repeat;box-shadow:inset -5rem -2rem 8rem rgba(0,0,0,.72),0 0 5rem rgba(140,255,0,.12)}
     .globe-shell.webgl-fallback .globe-label{left:58%;top:52%}
@@ -564,9 +564,9 @@
         portalTl
           .to(introCaption,{autoAlpha:0,duration:.12},0)
           .to(portalMaskText,{scale:6.6,transformOrigin:'center center',force3D:false,ease:'power2.in',duration:1.08},0)
-          .to(portalEarth,{scale:1.1,ease:'none',duration:1.08},0)
+          .to(portalEarth,{scale:1.52,transformOrigin:'center center',ease:'none',duration:1.08},0)
           .to(portalMask,{autoAlpha:0,ease:'none',duration:.12},.96)
-          .fromTo(portalTitle,{autoAlpha:0},{autoAlpha:1,ease:'none',duration:.18},.98)
+          .set(portalTitle,{autoAlpha:1},.98)
           .fromTo(portalTitleWords[0],{yPercent:115},{yPercent:0,ease:'power3.out',duration:.38},1.01)
           .fromTo(portalTitleWords[1],{yPercent:-115},{yPercent:0,ease:'power3.out',duration:.4},1.04)
           .fromTo(portalTitleRule,{scaleX:0},{scaleX:1,ease:'power2.out',duration:.42},1.08)
