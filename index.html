@@ -465,7 +465,7 @@
     <div class="footer-bottom mono"><span>© 2026 XTRA GRID</span><b>Where Tech Sparks Power</b><span>Kerala / India</span></div>
   </footer>
 
-  <script type="module" src="assets/globe.js"></script>
+  <script type="module" src="assets/globe.js?v=scroll-architecture-2"></script>
   <script src="https://unpkg.com/lenis@1.3.26/dist/lenis.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
@@ -523,7 +523,6 @@
       if(!reduced){
         ScrollTrigger.getAll().forEach(trigger=>trigger.kill());
         window.xgLocationProgress=0;
-        const locationProgress={value:0};
 
         // 01 — One continuous POWER → XTRA GRID → location-globe portal.
         const portal=document.querySelector('.portal-one');
@@ -543,7 +542,10 @@
           scrollTrigger:{
             trigger:portal,start:'top top',end:()=>'+='+(innerHeight*6.2),
             pin:true,pinSpacing:true,scrub:true,anticipatePin:1,
-            invalidateOnRefresh:true,refreshPriority:5
+            invalidateOnRefresh:true,refreshPriority:5,
+            onUpdate:self=>{
+              window.xgLocationProgress=Math.max(0,Math.min(1,(self.progress-.62)/.28));
+            }
           }
         });
         portalTl
@@ -558,7 +560,7 @@
           .fromTo(locationGlobe,{autoAlpha:0,scale:.86},{autoAlpha:1,scale:1,ease:'power2.out',duration:.62},2.04)
           .fromTo(locationWord,{autoAlpha:0,scale:.94},{autoAlpha:1,scale:1,transformOrigin:'0% 50%',duration:.4},2.12)
           .fromTo(locationCaption,{autoAlpha:0},{autoAlpha:1,duration:.28},2.25)
-          .to(locationProgress,{value:1,ease:'power2.inOut',duration:1.05,onUpdate:()=>{window.xgLocationProgress=locationProgress.value}},2.18)
+          .to({}, {duration:1.05},2.18)
           .fromTo(locationLabel,{autoAlpha:0},{autoAlpha:1,duration:.35},2.76)
           .to({}, {duration:.38});
 
