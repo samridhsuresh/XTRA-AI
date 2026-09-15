@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#050505">
+  <meta name="theme-color" content="#FAFAF8">
   <meta name="description" content="XTRA GRID TECHNOLOGIES PRIVATE LIMITED — energy storage, solar, smart-grid, mobility, digital infrastructure and intelligent systems.">
   <title>XTRA GRID — Where Tech Sparks Power</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -274,6 +274,7 @@
       .portal-sticky,.bess-sticky,.day-sticky{min-height:100svh}.portal-title-stage{display:none}.portal-location-stage{display:none}.solutions-track{width:100%;height:auto;display:block;transform:none!important}.solution{width:100%;height:auto;min-height:100svh;flex:none}
     }
   </style>
+  <link rel="stylesheet" href="assets/premium.css">
 </head>
 <body>
   <div class="opening-experience" aria-hidden="true">
@@ -555,7 +556,7 @@
         const portalTl=gsap.timeline({
           scrollTrigger:{
             trigger:portal,start:'top top',end:()=>'+='+(innerHeight*6.2),
-            pin:true,pinSpacing:true,scrub:true,anticipatePin:1,
+            pin:true,pinSpacing:true,scrub:.72,anticipatePin:1,
             invalidateOnRefresh:true,refreshPriority:5,
             onUpdate:self=>{
               window.xgLocationProgress=Math.max(0,Math.min(1,(self.progress-.62)/.28));
@@ -609,7 +610,8 @@
           scrollTrigger:{
             trigger:solutions,start:'top top',
             end:()=>'+='+(track.scrollWidth-solutions.clientWidth),
-            pin:true,pinSpacing:true,scrub:true,anticipatePin:1,
+            pin:true,pinSpacing:true,scrub:.78,anticipatePin:1,
+            snap:{snapTo:1/(panels.length-1),duration:{min:.18,max:.58},delay:.08,ease:'power2.inOut'},
             invalidateOnRefresh:true,refreshPriority:3,
             onUpdate:self=>{
               bar.style.width=(self.progress*100)+'%';
@@ -618,6 +620,16 @@
           }
         });
         solutionsTl.to(track,{xPercent:travelPercent,ease:'none',duration:1});
+        panels.forEach(panel=>{
+          const image=panel.querySelector('.solution-bg');
+          const title=panel.querySelector('h2');
+          gsap.fromTo(image,{xPercent:-5,scale:1.08},{xPercent:5,scale:1.02,ease:'none',scrollTrigger:{
+            trigger:panel,containerAnimation:solutionsTl,start:'left right',end:'right left',scrub:.8
+          }});
+          gsap.fromTo(title,{xPercent:3},{xPercent:-3,ease:'none',scrollTrigger:{
+            trigger:panel,containerAnimation:solutionsTl,start:'left right',end:'right left',scrub:.8
+          }});
+        });
 
         // 04 — The single Energy Stored / BESS story.
         const story=document.querySelector('.bess-story');
@@ -631,7 +643,7 @@
         const storyTl=gsap.timeline({
           scrollTrigger:{
             trigger:story,start:'top top',end:()=>'+='+(innerHeight*4.8),
-            scrub:true,pin:true,pinSpacing:true,anticipatePin:1,
+            scrub:.7,pin:true,pinSpacing:true,anticipatePin:1,
             invalidateOnRefresh:true,refreshPriority:2,
             onUpdate:self=>{
               const i=Math.min(steps.length-1,Math.floor(self.progress*steps.length));
@@ -641,8 +653,8 @@
           }
         });
         steps.slice(1).forEach((step,index)=>{
-          storyTl.to(steps[index],{autoAlpha:.08,y:-24,duration:.48},'step'+(index+1))
-            .to(step,{autoAlpha:1,y:0,duration:.52},'step'+(index+1));
+          storyTl.to(steps[index],{autoAlpha:.08,y:-24,filter:'blur(8px)',duration:.52},'step'+(index+1))
+            .fromTo(step,{autoAlpha:.08,y:30,filter:'blur(8px)'},{autoAlpha:1,y:0,filter:'blur(0px)',duration:.58},'step'+(index+1));
         });
         const storyDuration=storyTl.duration()||1;
         storyTl.to(storyStage,{'--story-p':1,'--path':1200,ease:'none',duration:storyDuration},0);
@@ -656,7 +668,7 @@
         const dayTl=gsap.timeline({
           scrollTrigger:{
             trigger:day,start:'top top',end:()=>'+='+(innerHeight*4.2),
-            scrub:true,pin:true,pinSpacing:true,anticipatePin:1,
+            scrub:.75,pin:true,pinSpacing:true,anticipatePin:1,
             invalidateOnRefresh:true,refreshPriority:1,
             onUpdate:self=>{
               const p=self.progress;
@@ -686,5 +698,6 @@
       },{once:true});
     })();
   </script>
+  <script src="assets/premium.js"></script>
 </body>
 </html>

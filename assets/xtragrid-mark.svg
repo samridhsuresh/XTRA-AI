@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 160" role="img" aria-labelledby="title desc">
+  <title id="title">XTRAGRID mark</title>
+  <desc id="desc">An X formed by a blue circuit plane and a green solar plane.</desc>
+  <defs>
+    <linearGradient id="blue" x1="18" y1="20" x2="108" y2="142" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1C6FE0"/>
+      <stop offset=".58" stop-color="#22B9EC"/>
+      <stop offset="1" stop-color="#4FD17A"/>
+    </linearGradient>
+    <linearGradient id="green" x1="150" y1="18" x2="85" y2="142" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#B9E442"/>
+      <stop offset=".5" stop-color="#4FD17A"/>
+      <stop offset="1" stop-color="#1A8D6B"/>
+    </linearGradient>
+    <linearGradient id="edge" x1="20" y1="24" x2="160" y2="136" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#55A5FF"/>
+      <stop offset=".5" stop-color="#6EE7CE"/>
+      <stop offset="1" stop-color="#7BD65A"/>
+    </linearGradient>
+    <radialGradient id="flare">
+      <stop stop-color="#FFF5B8"/>
+      <stop offset=".35" stop-color="#F2B93B" stop-opacity=".95"/>
+      <stop offset="1" stop-color="#F2B93B" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="5"/>
+    </filter>
+    <clipPath id="leftClip"><path d="M18 22h45l34 43-13 17-29-36H30L84 80l13 15-34 43H18l47-58z"/></clipPath>
+    <clipPath id="rightClip"><path d="M117 22h45l-47 58 47 58h-45L83 95l13-16z"/></clipPath>
+  </defs>
+  <path d="M18 22h45l34 43-13 17-29-36H30L84 80l13 15-34 43H18l47-58z" fill="url(#blue)"/>
+  <path d="M117 22h45l-47 58 47 58h-45L83 95l13-16z" fill="url(#green)"/>
+  <g clip-path="url(#leftClip)" fill="none" stroke="#D9F6FF" stroke-width="1.35" opacity=".82">
+    <path d="M20 34h37l29 36M14 54h32l36 31M16 118h38l31-39M22 136h36l32-41"/>
+    <path d="M38 20v20m12 76v26M65 30v19m-24 62v18"/>
+  </g>
+  <g clip-path="url(#rightClip)" fill="none" stroke="#E8FFD1" stroke-width="1.15" opacity=".74">
+    <path d="M79 51h75M73 66h76M89 95h67M101 112h60M113 128h45"/>
+    <path d="M112 18L84 63m51-44L97 78m55-59l-44 63m22 20l-20 38m40-25l-13 26"/>
+  </g>
+  <path d="M19 22h44l34 43M18 138h45l34-43M117 22h45l-47 58 47 58h-45L83 95" fill="none" stroke="url(#edge)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <g fill="#CFFBFF" stroke="#1C6FE0" stroke-width="1">
+    <circle cx="19" cy="22" r="4"/><circle cx="38" cy="34" r="3.5"/><circle cx="47" cy="54" r="3.2"/><circle cx="54" cy="118" r="3.5"/><circle cx="18" cy="138" r="4"/><circle cx="83" cy="80" r="4.2"/>
+  </g>
+  <circle cx="159" cy="22" r="23" fill="url(#flare)" filter="url(#glow)"/>
+  <circle cx="159" cy="22" r="3" fill="#FFF8D6"/>
+</svg>

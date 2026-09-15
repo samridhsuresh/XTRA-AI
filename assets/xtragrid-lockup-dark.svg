@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 390" role="img" aria-labelledby="title desc">
+  <title id="title">XTRAGRID TECHNOLOGIES</title>
+  <desc id="desc">XTRAGRID Technologies. Smart technology. Sustainable energy. Infinite possibilities.</desc>
+  <defs>
+    <linearGradient id="word" x1="328" y1="0" x2="590" y2="0" gradientUnits="userSpaceOnUse"><stop stop-color="#8DDF4F"/><stop offset="1" stop-color="#25BCEB"/></linearGradient>
+    <linearGradient id="blue" x1="18" y1="20" x2="108" y2="142" gradientUnits="userSpaceOnUse"><stop stop-color="#1C6FE0"/><stop offset=".58" stop-color="#22B9EC"/><stop offset="1" stop-color="#4FD17A"/></linearGradient>
+    <linearGradient id="green" x1="150" y1="18" x2="85" y2="142" gradientUnits="userSpaceOnUse"><stop stop-color="#B9E442"/><stop offset=".5" stop-color="#4FD17A"/><stop offset="1" stop-color="#1A8D6B"/></linearGradient>
+    <radialGradient id="flare"><stop stop-color="#FFF5B8"/><stop offset=".35" stop-color="#F2B93B"/><stop offset="1" stop-color="#F2B93B" stop-opacity="0"/></radialGradient>
+  </defs>
+  <g transform="translate(234 5) scale(.96)">
+    <path d="M18 22h45l34 43-13 17-29-36H30L84 80l13 15-34 43H18l47-58z" fill="url(#blue)"/>
+    <path d="M117 22h45l-47 58 47 58h-45L83 95l13-16z" fill="url(#green)"/>
+    <g fill="none" stroke="#E9FCFF" stroke-width="1.5" opacity=".8"><path d="M20 34h37l29 36M18 118h36l31-39M38 22v18m17 75v22"/><path d="M120 35h34M111 51h38M120 113h37M130 128h29" stroke="#F2FFE1"/></g>
+    <g fill="#D9FBFF" stroke="#1C6FE0"><circle cx="19" cy="22" r="4"/><circle cx="38" cy="34" r="3.5"/><circle cx="54" cy="118" r="3.5"/><circle cx="18" cy="138" r="4"/><circle cx="83" cy="80" r="4"/></g>
+    <circle cx="159" cy="22" r="22" fill="url(#flare)"/><circle cx="159" cy="22" r="3" fill="#FFF8D6"/>
+  </g>
+  <text x="48" y="246" font-family="Arial,Helvetica,sans-serif" font-size="86" font-weight="700" letter-spacing="7" fill="#FAFAF8">XTRA</text>
+  <text x="330" y="246" font-family="Arial,Helvetica,sans-serif" font-size="86" font-weight="700" letter-spacing="2" fill="url(#word)">GRID</text>
+  <path d="M82 286h102m272 0h102" stroke="url(#word)" stroke-width="3"/>
+  <text x="320" y="298" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="26" font-weight="400" letter-spacing="16" fill="#A8AEAC">TECHNOLOGIES</text>
+  <text x="320" y="346" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="600" letter-spacing="2.4" fill="#D6DAD8">SMART TECHNOLOGY. SUSTAINABLE ENERGY. INFINITE POSSIBILITIES.</text>
+</svg>

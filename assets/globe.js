@@ -8,6 +8,7 @@ function createGlobe(canvas){
   const mode=canvas.dataset.globeMode||'location';
   const shell=canvas.parentElement;
   const label=mode==='location'?shell.querySelector('.globe-label'):null;
+  const accent=mode==='mask'?0x1c6fe0:0x4fd17a;
   const scene=new THREE.Scene();
   const camera=new THREE.PerspectiveCamera(mode==='mask'?30:33,1,.1,100);
   camera.position.set(0,0,mode==='mask'?2.7:3.35);
@@ -15,7 +16,7 @@ function createGlobe(canvas){
   const renderer=new THREE.WebGLRenderer({
     canvas,alpha:true,antialias:true,powerPreference:'high-performance'
   });
-  renderer.setPixelRatio(Math.min(devicePixelRatio,1.75));
+  renderer.setPixelRatio(Math.min(devicePixelRatio,innerWidth<760?1.25:1.6));
   renderer.outputColorSpace=THREE.SRGBColorSpace;
   renderer.toneMapping=THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure=mode==='mask'?1.15:1.05;
@@ -36,7 +37,7 @@ function createGlobe(canvas){
   const earth=new THREE.Mesh(
     new THREE.SphereGeometry(1,96,96),
     new THREE.MeshStandardMaterial({
-      map:texture,color:mode==='mask'?0xa9b8b0:0x8b9891,roughness:.88,metalness:.04
+      map:texture,color:mode==='mask'?0xc6d3d8:0xb8c9c0,roughness:.88,metalness:.04
     })
   );
   earthGroup.add(earth);
@@ -44,14 +45,14 @@ function createGlobe(canvas){
   const atmosphere=new THREE.Mesh(
     new THREE.SphereGeometry(1.045,64,64),
     new THREE.MeshBasicMaterial({
-      color:0x8cff00,transparent:true,opacity:mode==='mask'?.075:.055,
+      color:accent,transparent:true,opacity:mode==='mask'?.12:.09,
       side:THREE.BackSide,blending:THREE.AdditiveBlending
     })
   );
   earthGroup.add(atmosphere);
 
   const gridMaterial=new THREE.LineBasicMaterial({
-    color:0x8cff00,transparent:true,opacity:mode==='mask'?.075:.1
+    color:accent,transparent:true,opacity:mode==='mask'?.12:.14
   });
   const ringPoints=(radius,y,segments=160)=>{
     const points=[];
@@ -91,7 +92,7 @@ function createGlobe(canvas){
 
     marker=new THREE.Mesh(
       new THREE.SphereGeometry(.025,24,24),
-      new THREE.MeshBasicMaterial({color:0x8cff00})
+      new THREE.MeshBasicMaterial({color:0xf2b93b})
     );
     marker.position.copy(location).multiplyScalar(1.025);
     earthGroup.add(marker);
@@ -99,7 +100,7 @@ function createGlobe(canvas){
     markerHalo=new THREE.Mesh(
       new THREE.RingGeometry(.035,.052,40),
       new THREE.MeshBasicMaterial({
-        color:0x8cff00,transparent:true,opacity:.7,side:THREE.DoubleSide
+        color:0xf2b93b,transparent:true,opacity:.7,side:THREE.DoubleSide
       })
     );
     markerHalo.position.copy(location).multiplyScalar(1.03);
@@ -111,7 +112,7 @@ function createGlobe(canvas){
         location.clone().multiplyScalar(1.03),
         location.clone().multiplyScalar(1.28)
       ]),
-      new THREE.LineBasicMaterial({color:0x8cff00,transparent:true,opacity:.9})
+      new THREE.LineBasicMaterial({color:0x4fd17a,transparent:true,opacity:.9})
     ));
 
     locationEndQuaternion=new THREE.Quaternion().setFromUnitVectors(
@@ -124,11 +125,11 @@ function createGlobe(canvas){
     earthGroup.rotation.set(.08,-.45,0);
   }
 
-  scene.add(new THREE.HemisphereLight(0xb9d2cf,0x07100d,1.25));
+  scene.add(new THREE.HemisphereLight(0xe8f3ff,0x173a2a,1.45));
   const key=new THREE.DirectionalLight(0xffffff,mode==='mask'?3.2:2.8);
   key.position.set(-3,2.4,4);
   scene.add(key);
-  const rim=new THREE.DirectionalLight(0x8cff00,1.35);
+  const rim=new THREE.DirectionalLight(0x4fd17a,1.35);
   rim.position.set(3,-1,-2);
   scene.add(rim);
 
@@ -168,12 +169,14 @@ function createGlobe(canvas){
   resizeObserver.observe(shell);
   resize();
 
-  shell.addEventListener('pointermove',event=>{
-    const bounds=shell.getBoundingClientRect();
-    pointerX=((event.clientX-bounds.left)/bounds.width-.5)*2;
-    pointerY=((event.clientY-bounds.top)/bounds.height-.5)*2;
-  },{passive:true});
-  shell.addEventListener('pointerleave',()=>{pointerX=0;pointerY=0});
+  if(matchMedia('(hover: hover) and (pointer: fine)').matches){
+    shell.addEventListener('pointermove',event=>{
+      const bounds=shell.getBoundingClientRect();
+      pointerX=((event.clientX-bounds.left)/bounds.width-.5)*2;
+      pointerY=((event.clientY-bounds.top)/bounds.height-.5)*2;
+    },{passive:true});
+    shell.addEventListener('pointerleave',()=>{pointerX=0;pointerY=0});
+  }
 
   const visibilityObserver=new IntersectionObserver(entries=>{
     visible=entries[0]?.isIntersecting||false;
