@@ -92,7 +92,7 @@
     .portal-earth.webgl-fallback:before,.globe-shell.webgl-fallback:before{content:"";position:absolute;left:56%;top:50%;width:min(68vw,74vh);aspect-ratio:1;border-radius:50%;transform:translate(-50%,-50%);background:#0a1512 url("https://threejs.org/examples/textures/planets/earth_atmos_2048.jpg") 72% center/cover no-repeat;box-shadow:inset -5rem -2rem 8rem rgba(0,0,0,.72),0 0 5rem rgba(140,255,0,.12)}
     .globe-shell.webgl-fallback .globe-label{left:58%;top:52%}
     .portal-earth:after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 50% 50%,transparent 20%,rgba(0,0,0,.08) 62%,rgba(0,0,0,.52) 100%)}
-    .portal-mask{position:absolute;inset:0;z-index:3;width:100%;height:100%;overflow:visible;will-change:opacity}
+    .portal-mask{position:absolute;inset:0;z-index:3;width:100%;height:100%;overflow:visible;transform-origin:50% 50%;will-change:transform,opacity}
     .portal-mask-cover{fill:#000}
     .portal-mask-text{font-family:Archivo,Manrope,Arial,sans-serif;font-size:clamp(7rem,23vw,22rem);font-weight:900;letter-spacing:-.075em;transform-box:view-box;transform-origin:center center;will-change:transform}
     .portal-one .portal-caption{z-index:5}
@@ -509,9 +509,10 @@
 
       gsap.registerPlugin(ScrollTrigger);
       const lenis=new Lenis({
-        duration:1.2,
+        duration:1.55,
         easing:t=>Math.min(1,1.001-Math.pow(2,-10*t)),
         smoothWheel:true,
+        wheelMultiplier:.78,
         anchors:true,
         respectReducedMotion:true
       });
@@ -563,7 +564,7 @@
         });
         portalTl
           .to(introCaption,{autoAlpha:0,duration:.12},0)
-          .to(portalMaskText,{scale:6.6,transformOrigin:'center center',force3D:false,ease:'power2.in',duration:1.08},0)
+          .to(portalMask,{scale:180,ease:'power2.in',duration:1.08},0)
           .to(portalEarth,{scale:1.52,transformOrigin:'center center',ease:'none',duration:1.08},0)
           .to(portalMask,{autoAlpha:0,ease:'none',duration:.12},.96)
           .set(portalTitle,{autoAlpha:1},.98)
