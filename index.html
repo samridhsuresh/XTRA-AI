@@ -89,6 +89,8 @@
     .portal-one .portal-sticky{isolation:isolate;background:#000}
     .portal-earth{position:absolute;inset:0;z-index:1;overflow:hidden;transform:scale(.94);will-change:transform}
     .portal-earth canvas{width:100%;height:100%;display:block}
+    .portal-earth.webgl-fallback:before,.globe-shell.webgl-fallback:before{content:"";position:absolute;left:56%;top:50%;width:min(68vw,74vh);aspect-ratio:1;border-radius:50%;transform:translate(-50%,-50%);background:#0a1512 url("https://threejs.org/examples/textures/planets/earth_atmos_2048.jpg") center/cover no-repeat;box-shadow:inset -5rem -2rem 8rem rgba(0,0,0,.72),0 0 5rem rgba(140,255,0,.12)}
+    .globe-shell.webgl-fallback .globe-label{left:58%;top:52%}
     .portal-earth:after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 50% 50%,transparent 20%,rgba(0,0,0,.08) 62%,rgba(0,0,0,.52) 100%)}
     .portal-mask{position:absolute;inset:0;z-index:3;width:100%;height:100%;overflow:visible;will-change:opacity}
     .portal-mask-cover{fill:#000}
@@ -521,6 +523,7 @@
       if(!reduced){
         ScrollTrigger.getAll().forEach(trigger=>trigger.kill());
         window.xgLocationProgress=0;
+        const locationProgress={value:0};
 
         // 01 — One continuous POWER → XTRA GRID → location-globe portal.
         const portal=document.querySelector('.portal-one');
@@ -555,7 +558,7 @@
           .fromTo(locationGlobe,{autoAlpha:0,scale:.86},{autoAlpha:1,scale:1,ease:'power2.out',duration:.62},2.04)
           .fromTo(locationWord,{autoAlpha:0,scale:.94},{autoAlpha:1,scale:1,transformOrigin:'0% 50%',duration:.4},2.12)
           .fromTo(locationCaption,{autoAlpha:0},{autoAlpha:1,duration:.28},2.25)
-          .to(window,{xgLocationProgress:1,ease:'power2.inOut',duration:1.05},2.18)
+          .to(locationProgress,{value:1,ease:'power2.inOut',duration:1.05,onUpdate:()=>{window.xgLocationProgress=locationProgress.value}},2.18)
           .fromTo(locationLabel,{autoAlpha:0},{autoAlpha:1,duration:.35},2.76)
           .to({}, {duration:.38});
 
