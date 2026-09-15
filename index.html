@@ -347,6 +347,7 @@
     </section>
 
     <section class="demand" id="demand">
+      <div class="demand-sticky">
       <p class="eyebrow">Demand management / Concept</p>
       <h2 class="display reveal"><span>Off-peak</span><b>→</b><span>Peak</span></h2>
       <div class="curve reveal">
@@ -362,6 +363,7 @@
         <div class="curve-labels mono"><span>Lower demand / Store</span><span>Balance</span><span>Higher demand / Deploy</span></div>
       </div>
       <div class="demand-copy"><p><strong>Store available energy.</strong><br>Use it when demand rises. Project outcomes depend on site conditions, tariffs and system design.</p></div>
+      </div>
     </section>
 
     <section class="solutions-wrap" id="solutions">
@@ -592,7 +594,6 @@
         const demand=document.querySelector('.demand');
         const curveLine=document.querySelector('.curve-line');
         const marker=document.querySelector('.curve-marker');
-        const pinDemand=innerWidth>780;
         const curveLength=curveLine.getTotalLength();
         const startPoint=curveLine.getPointAtLength(0);
         gsap.set(curveLine,{strokeDasharray:curveLength,strokeDashoffset:curveLength});
@@ -600,12 +601,9 @@
         marker.setAttribute('cy',String(startPoint.y));
         gsap.to(curveLine,{strokeDashoffset:0,ease:'none',scrollTrigger:{
           trigger:demand,
-          start:pinDemand?'top top':'top 88%',
-          end:pinDemand?()=>'+='+(innerHeight*2.2):'bottom 34%',
+          start:innerWidth>780?'top top':'top 88%',
+          end:innerWidth>780?'bottom bottom':'bottom 34%',
           scrub:1.25,
-          pin:pinDemand,
-          pinSpacing:pinDemand,
-          anticipatePin:pinDemand?1:0,
           invalidateOnRefresh:true,refreshPriority:4,
           onUpdate:self=>{
             const point=curveLine.getPointAtLength(curveLength*self.progress);
