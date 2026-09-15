@@ -58,6 +58,44 @@
     update();
   }
 
+  function installContactEmail() {
+    const shell = document.querySelector('.contact-shell');
+    if (!shell) return;
+
+    const details = shell.querySelector('.contact-grid > div');
+    if (details && !details.querySelector('.contact-email')) {
+      const email = document.createElement('a');
+      email.className = 'contact-email mono';
+      email.href = 'mailto:info@xtragrid.in';
+      email.innerHTML = 'info@xtragrid.in <span>↗</span>';
+      details.append(email);
+    }
+
+    const legalList = document.querySelector('.legal-list');
+    if (legalList && !legalList.querySelector('a[href^="mailto:"]')) {
+      const row = document.createElement('div');
+      row.className = 'legal-row';
+      row.innerHTML = '<span>Email</span><strong><a href="mailto:info@xtragrid.in">info@xtragrid.in</a></strong>';
+      legalList.append(row);
+    }
+
+    const form = document.querySelector('#inquiryForm');
+    if (!form) return;
+    const button = form.querySelector('.submit');
+    if (button) button.innerHTML = '<span>Email enquiry</span><span>Send ↗</span>';
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      const data = new FormData(form);
+      const name = String(data.get('name') || '').trim();
+      const area = String(data.get('area') || 'Business enquiry');
+      const body = ['XTRAGRID BUSINESS ENQUIRY', '', ...Array.from(data.entries()).map(([key, value]) => `${key.toUpperCase()}: ${value}`)].join('\n');
+      const status = form.querySelector('.form-status');
+      if (status) status.textContent = 'Opening your email app to contact info@xtragrid.in…';
+      location.href = `mailto:info@xtragrid.in?subject=${encodeURIComponent(`${area} — ${name}`)}&body=${encodeURIComponent(body)}`;
+    }, true);
+  }
+
   function installNavBehavior() {
     const nav = document.querySelector('.site-nav');
     if (!nav) return;
@@ -217,6 +255,7 @@
   installBrand();
   installThread();
   installNavBehavior();
+  installContactEmail();
 
   (async () => {
     try {
@@ -229,3 +268,4 @@
     }
   })();
 })();
+
