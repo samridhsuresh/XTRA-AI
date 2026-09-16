@@ -705,6 +705,8 @@ html[data-theme="dark"] {
   .day-sticky { border-radius: 22px; }
   .portal-location-stage .portal-word {
     z-index: 7;
+    opacity: 1 !important;
+    visibility: visible !important;
     left: var(--pad) !important;
     right: var(--pad);
     top: 42% !important;
